@@ -36,6 +36,7 @@ gem 'angular_rails_csrf'
 gem 'rails_12factor', group: :production
 gem 'kaminari'
 gem 'devise', '~> 3.4.0'
+gem 'email_validator'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -50,7 +51,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'capybara'
-  gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -59,6 +59,7 @@ end
 group :test do
   gem 'faker'
   gem 'guard-rspec'
+  gem 'factory_girl_rails', :require => false
   gem 'launchy'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
