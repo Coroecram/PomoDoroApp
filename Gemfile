@@ -60,6 +60,7 @@ group :test do
   gem 'faker'
   gem 'guard-rspec'
   gem 'factory_girl_rails', :require => false
+  gem 'database_cleaner'
   gem 'launchy'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
