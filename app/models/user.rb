@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
          :confirmable, :lockable, :timeoutable
   validates :email, :username, :password, :password_confirmation, presence: true
   validates :email, :username, uniqueness: true
+  validates :username, length: { in: 6..30 }
+  validates :email, length: { maximum: 50 }
   validates :email, email: true, :if => Proc.new {|entry| !entry.email.blank? }
   validate :check_email_and_password
   validate :check_username_and_password

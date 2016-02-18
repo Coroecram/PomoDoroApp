@@ -15,14 +15,35 @@ describe 'User' do
       remove_username
       expect(@user).to_not be_valid
     end
-    # it "needs to be unique" do
-    #   expect(@user).to_not be_valid
-    # end
+    it "needs to be at least 6 characters" do
+      @user.username = "four"
+      expect(@user).to_not be_valid
+    end
+    it "needs to be less than 30 characters" do
+      @user.username = ("x" * 31)
+      expect(@user).to_not be_valid
+    end
+    it "needs to be unique" do
+      user2 = @user.dup
+      user2.email = "different@email.com"
+      expect(user2).to_not be_valid
+    end
   end
-    it "needs an email" do
+  describe "email" do
+    it "needs to be present" do
       remove_email
       expect(@user).to_not be_valid
     end
+    it "needs to be less than 50 characters" do
+      @user.email = ("x" * 44 + "@51.com")
+      expect(@user).to_not be_valid
+    end
+    it "needs to be unique" do
+      user2 = @user.dup
+      user2.username = "different"
+      expect(user2).to_not be_valid
+    end
+  end
     it "needs a password" do
       short_pw
       expect(@user).to_not be_valid
