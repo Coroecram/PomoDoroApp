@@ -5,8 +5,11 @@ describe 'Todo' do
     @user = FactoryGirl.create(:user)
   end
   before(:each) do
-    @todo = FactoryGirl.create(:todo)
-    @todo.user = @user.id
+    @todo = FactoryGirl.build(:todo)
+    @todo.user_id = @user.id
+  end
+  after(:all) do
+    User.delete_all
   end
   it "has a valid factory" do
     expect(@todo).to be_valid

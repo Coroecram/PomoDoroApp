@@ -14,6 +14,6 @@ FactoryGirl.define do
     expected_pomos 6
     completed_pomos 0
     time_started Time.now - 3000
-    expected_finish Time.now
+    expected_finished Time.now
   end
 end
