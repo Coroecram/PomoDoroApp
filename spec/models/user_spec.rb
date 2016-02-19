@@ -44,6 +44,7 @@ describe 'User' do
       expect(user2).to_not be_valid
     end
   end
+  describe 'password' do
     it "needs a password" do
       short_pw
       expect(@user).to_not be_valid
@@ -56,6 +57,7 @@ describe 'User' do
       change_pw_confirmation
       expect(@user).to_not be_valid
     end
+  end
 
 end
 
