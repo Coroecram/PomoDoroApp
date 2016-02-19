@@ -13,7 +13,10 @@ FactoryGirl.define do
     description 'This is going to be so fake'
     expected_pomos 6
     completed_pomos 0
-    time_started Time.now - 3000
-    expected_finished Time.now
+    started false
+    finished false
+    time_started (Time.zone.now - 3000)
+    expected_finished Time.zone.now
+    user_id 1
   end
 end
