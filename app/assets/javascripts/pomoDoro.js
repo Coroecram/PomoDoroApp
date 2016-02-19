@@ -6,7 +6,9 @@ angular.module('pomoDoro', [
 .config([
   '$stateProvider',
   '$urlRouterProvider',
-  function($stateProvider, $urlRouterProvider) {
+  '$httpProvider',
+  function($stateProvider, $urlRouterProvider, $httpProvider) {
+    $httpProvider.defaults.withCredentials = true;
     $stateProvider
       .state('home', {
         url: '/home',
@@ -17,21 +19,21 @@ angular.module('pomoDoro', [
         url: '/signin',
         templateUrl: 'session/_signIn.html',
         controller: 'sessionController',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
-          Auth.currentUser().then(function (){
-            $state.go('home');
-          })
-        }]
+        // onEnter: ['$state', 'Auth', function($state, Auth) {
+        //   Auth.currentUser().then(function (){
+        //     $state.go('home');
+        //   })
+        // }]
       })
       .state('signup', {
         url: '/signup',
         templateUrl: 'session/_signUp.html',
         controller: 'sessionController',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
-          Auth.currentUser().then(function (){
-            $state.go('home');
-          })
-        }]
+        // onEnter: ['$state', 'Auth', function($state, Auth) {
+        //   Auth.currentUser().then(function (){
+        //     $state.go('home');
+        //   })
+        // }]
       });
 
 
