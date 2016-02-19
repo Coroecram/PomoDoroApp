@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218215002) do
+ActiveRecord::Schema.define(version: 20160219200153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "todos", force: :cascade do |t|
+    t.string   "title",             limit: 45,                 null: false
+    t.text     "description"
+    t.integer  "expected_pomos",               default: 1,     null: false
+    t.integer  "completed_pomos",              default: 0,     null: false
+    t.datetime "time_started"
+    t.datetime "expected_finished"
+    t.datetime "time_finished"
+    t.boolean  "started",                      default: false, null: false
+    t.boolean  "finished",                     default: false, null: false
+    t.integer  "priority",                     default: 0,     null: false
+    t.integer  "user_id",                                      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "todos", ["completed_pomos"], name: "index_todos_on_completed_pomos", using: :btree
+  add_index "todos", ["expected_pomos"], name: "index_todos_on_expected_pomos", using: :btree
+  add_index "todos", ["time_finished"], name: "index_todos_on_time_finished", using: :btree
+  add_index "todos", ["time_started"], name: "index_todos_on_time_started", using: :btree
+  add_index "todos", ["user_id"], name: "index_todos_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
