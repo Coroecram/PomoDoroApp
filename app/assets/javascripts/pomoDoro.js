@@ -18,17 +18,22 @@ angular.module('pomoDoro', [
         templateUrl: 'session/_signIn.html',
         controller: 'sessionController',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-        Auth.currentUser().then(function (){
-        $state.go('home');
+          Auth.currentUser().then(function (){
+            $state.go('home');
+          })
+        }]
       })
       .state('signup', {
-        url: '/signUp',
+        url: '/signup',
         templateUrl: 'session/_signUp.html',
         controller: 'sessionController',
         onEnter: ['$state', 'Auth', function($state, Auth) {
-        Auth.currentUser().then(function (){
-        $state.go('home');
+          Auth.currentUser().then(function (){
+            $state.go('home');
+          })
+        }]
       });
+
 
   $urlRouterProvider.otherwise('home');
 }])
