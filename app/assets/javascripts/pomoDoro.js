@@ -12,7 +12,7 @@ angular.module('pomoDoro', [
         url: '/home',
         templateUrl: 'home/_home.html',
         controller: 'MainCtrl',
-      }
-    })
+      })
+
   $urlRouterProvider.otherwise('home');
 }])
