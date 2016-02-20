@@ -31,11 +31,6 @@ angular.module('pomoDoro', [
         url: '/signup',
         templateUrl: 'session/_signUp.html',
         controller: 'sessionController',
-        // onEnter: ['$state', 'Auth', function($state, Auth) {
-        //   Auth.currentUser().then(function (){
-        //     $state.go('home');
-        //   })
-        // }]
       })
       .state('user', {
         url: '/users/{id}',
@@ -46,3 +41,11 @@ angular.module('pomoDoro', [
 
   $urlRouterProvider.otherwise('home');
 }])
+
+// resolve: {
+//   postPromise: ['Auth', 'user', function(Auth, user){
+//     return Auth.currentUser().then(function (currentUser) {
+//       user.getTodos(currentUser.id);
+//     });
+//   }]
+// },

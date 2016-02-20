@@ -1,9 +1,9 @@
 <div class="collapse navbar-collapse pull-right" ng-controller="navController">
   <ul class="nav navbar-nav">
     <li><a href="#/home">Home</a></li>
-    <li ng-hide="signedIn()"><a href="#/signin">Log In</a></li>
+    <li ng-hide="signedIn()"><a href="#/signin">Sign In</a></li>
     <li ng-hide="signedIn()"><a href="#/signup">Register</a></li>
     <li ng-show="signedIn()"><a href="#/">{{ user.username }}</a></li>
-    <li ng-show="signedIn()"><a ng-click="logout()">Log Out</a></li>
+    <li ng-show="signedIn()"><a href="#/signin" ng-click="signOut()">Sign Out</a></li>
   </ul>
 </div>
