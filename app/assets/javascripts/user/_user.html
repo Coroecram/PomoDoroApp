@@ -10,6 +10,12 @@
     <div class='todo-desc' ng-show="todo.description">
       {{todo.description}}
     </div>
+    <div ng-repeat="completed in range(todo.completed_pomos)">
+      <p>COMPLETED{{completed}}</p>
+    </div>
+    <div ng-repeat="expected in range(todo.expected_pomos - todo.completed_pomos)">
+      <p>ExpecTED: {{key}}</p>
+    </div>
   </span>
 </div>
 

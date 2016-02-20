@@ -19,4 +19,12 @@ angular.module('pomoDoro')
       $scope.desc = '';
     };
 
+    $scope.range = function(max) {
+      var iterated = [];
+      for (var i = 0; i < max; i++) {
+        iterated.push(i);
+      }
+      return iterated;
+    };
+
 }]);
