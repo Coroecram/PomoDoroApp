@@ -5,7 +5,9 @@ class TodosController < ApplicationController
   end
 
   def create
-    respond_with Todo.create(post_params)
+    user = User.find(params[:user_id])
+    todo = Todo.create(todo_params)
+    respond_with user, todo
   end
 
   def show
@@ -21,6 +23,6 @@ class TodosController < ApplicationController
 
   private
   def todo_params
-    params.require(:todo).permit(:title, :description, )
+    params.require(:todo).permit(:title, :description, :user_id)
   end
 end

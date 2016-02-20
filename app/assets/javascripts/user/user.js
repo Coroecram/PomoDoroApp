@@ -10,8 +10,8 @@ angular.module('pomoDoro')
         angular.copy(data, o.todos);
       });
     };
-    o.createTodo = function(id) {
-      return $http.post('/users/' + id + '/todos.json', post).success(function(data){
+    o.createTodo = function(todo) {
+      return $http.post('/users/' + todo.user_id + '/todos.json', todo).success(function(data){
         o.todos.push(data);
       });
     };

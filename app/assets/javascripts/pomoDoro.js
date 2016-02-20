@@ -37,13 +37,13 @@ angular.module('pomoDoro', [
       })
       .state('user', {
         url: '/users/{id}',
-        templateUrl: 'user/_todos.html',
+        templateUrl: 'user/_user.html',
         controller: 'userController',
         resolve: {
-        todos: ['$stateParams', 'user', function($stateParams, user) {
-                return user.getTodos($stateParams.id);
-              }]
-          }
+          postPromise: ['$stateParams', 'user', function($stateParams, user){
+            return user.getTodos($stateParams.id);
+          }]
+        }
       });
 
 

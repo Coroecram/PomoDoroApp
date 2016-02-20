@@ -1,6 +1,22 @@
 angular.module('pomoDoro')
 .controller('userController', [
   '$scope',
-  function($scope){
+  '$state',
+  'user',
+  function($scope, $state, todos) {
+    $scope.todos = todos.todos;
+    $scope.user_id = $state.params.id;
+
+    $scope.addTodo = function() {
+      if (!$scope.title || $scope.title === '') { return };
+      todos.createTodo(
+      {
+        title: $scope.title,
+        description: $scope.desc,
+        user_id: $scope.user_id
+      });
+      $scope.title = '';
+      $scope.desc = '';
+    };
 
 }]);
