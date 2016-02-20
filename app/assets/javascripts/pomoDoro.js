@@ -14,18 +14,13 @@ angular.module('pomoDoro', [
         url: '/home',
         templateUrl: 'home/_home.html',
         controller: 'mainController',
-        resolve: {
-          postPromise: ['Auth', 'user', function(Auth, user){
-            return Auth.currentUser().then(function (currentUser) {
+        onEnter: ['$state', 'Auth', 'user', function($state, Auth, user) {
+          Auth.currentUser().then(function(currentUser) {
               user.getTodos(currentUser.id);
+            }, function(error) {
+              $state.go('signin');
             });
           }]
-        },
-        onEnter: ['$state', 'Auth', function($state, Auth) {
-          Auth.currentUser().then(function(currentUser) {
-            if (!currentUser) { $state.go('signin') };
-          })
-        }]
       })
       .state('signin', {
         url: '/signin',
