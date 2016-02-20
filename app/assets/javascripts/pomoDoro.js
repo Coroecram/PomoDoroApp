@@ -1,7 +1,8 @@
 angular.module('pomoDoro', [
   'ui.router',
   'templates',
-  'Devise'
+  'Devise',
+  'ngTable',
 ])
 .config([
   '$stateProvider',

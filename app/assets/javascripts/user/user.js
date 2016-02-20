@@ -7,7 +7,7 @@ angular.module('pomoDoro')
     };
     o.getTodos = function(id) {
       return $http.get('/users/' + id + '/todos.json').success(function(data){
-        angular.copy(data, o.todos);
+        angular.copy(data, o.user);
       });
     };
     o.createTodo = function(todo) {

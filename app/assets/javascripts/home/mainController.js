@@ -1,10 +1,10 @@
 angular.module('pomoDoro')
 .controller('mainController', [
-  '$scope',
   '$state',
   'user',
-  function($scope, $state, todos) {
-    $scope.todos = todos.todos;
+  '$scope',
+  function($state, user, $scope) {
+    $scope.todos = user.todos;
     $scope.user_id = $state.params.id;
 
     $scope.addTodo = function() {
