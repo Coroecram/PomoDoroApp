@@ -10,12 +10,16 @@
     <div class='todo-desc' ng-show="todo.description">
       {{todo.description}}
     </div>
-    <div ng-repeat="completed in range(todo.completed_pomos)">
-      <p>COMPLETED{{completed}}</p>
-    </div>
-    <div ng-repeat="expected in range(todo.expected_pomos - todo.completed_pomos)">
-      <p>ExpecTED: {{key}}</p>
-    </div>
+    <ul class="pomodoro-list clear" >
+      <div ng-repeat="completed in iterate(todo.completed_pomos)">
+        <li><img src="<%= image_path('Golden_Apple_Small.png') %>" ></img>
+        </li>
+      </div>
+      <div ng-repeat="expected in iterate(todo.expected_pomos - todo.completed_pomos)">
+        <li><img src="<%= image_path('Golden_Apple_Small.png')%>" class="inactive-pomo">
+        </img></li>
+      </div>
+    </ul>
   </span>
 </div>
 
