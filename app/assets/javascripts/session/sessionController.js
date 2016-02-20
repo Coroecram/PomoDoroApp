@@ -8,7 +8,6 @@ function($scope, $state, Auth){
     Auth.login($scope.user).then(function(){
       $state.go('home');
     }, function(error){
-      debugger
     });
   };
 

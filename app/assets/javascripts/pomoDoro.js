@@ -34,6 +34,16 @@ angular.module('pomoDoro', [
         //     $state.go('home');
         //   })
         // }]
+      })
+      .state('user', {
+        url: '/users/{id}',
+        templateUrl: 'user/_todos.html',
+        controller: 'userController',
+        resolve: {
+        todos: ['$stateParams', 'user', function($stateParams, user) {
+                return user.getTodos($stateParams.id);
+              }]
+          }
       });
 
 
