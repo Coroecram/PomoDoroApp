@@ -17,7 +17,7 @@ class TodosController < ApplicationController
 
   def complete_pomo
     todo = Todo.find(params[:id])
-    todo.pomo_completed!(:upvotes)
+    todo.pomo_completed!
 
     respond_with todo
   end

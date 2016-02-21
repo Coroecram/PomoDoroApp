@@ -14,6 +14,10 @@ function($scope, $state, $filter, todo) {
       $state.go('home');
     });
   }
+  var finishFailSafe = function() {
+    $scope.todo.completed_pomos += 1;
+    $scope.reset();
+  };
   $scope.countdown = 1500;
 
   $scope.start = function() {
@@ -32,6 +36,19 @@ function($scope, $state, $filter, todo) {
      if ($scope.timerRunning) {
        $scope.start()
      }
+  };
+  $scope.timerFinished = function() {
+    $scope.timerRunning = false;
+    todo.completePomo().then(function(response) {
+      todo.getTodo($state.params.id, $state.params.todoID).then(function(response){
+        $scope.todo = response.data;
+        $scope.reset();
+      }, function(error) {
+        finishFailSafe();
+      });
+    }, function(error) {
+        finishFailSafe();
+    });
   };
   $scope.iterate = function(max) {
     var iterated = [];

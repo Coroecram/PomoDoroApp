@@ -16,12 +16,13 @@
   <div ng-show="timerRunning" ng-click="pause()">Pause Timer</div>
   <div ng-click="reset()">Reset Timer</div>
   <div ng-click="complete()">Complete Task</div>
-  <div ng-click="edit()">Edit Task</div>
+  <!-- <div ng-click="edit()">Edit Task</div> -->
   <div ng-click="delete()">Delete Task</div>
 </div>
 <timer
-       countdown="1500"
+       countdown="10"
        interval="1000"
-       autostart="false">
+       autostart="false"
+       finish-callback="timerFinished()">
          {{mminutes}}:{{sseconds}}
 </timer>

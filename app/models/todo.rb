@@ -17,6 +17,7 @@ class Todo < ActiveRecord::Base
 
   def pomo_completed!
     self.completed_pomos += 1
+    self.save!
   end
 
   def start_now
