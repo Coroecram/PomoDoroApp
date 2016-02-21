@@ -3,9 +3,8 @@ angular.module('pomoDoro')
 '$scope',
 '$state',
 '$filter',
-'$http',
 'todo',
-function($scope, $state, $filter, $http, todo) {
+function($scope, $state, $filter, todo) {
   var finishFailSafe = function() {
     $scope.todo.completed_pomos += 1;
     $scope.reset();
@@ -60,9 +59,8 @@ function($scope, $state, $filter, $http, todo) {
     });
   };
   $scope.deleteTodo = function() {
-    $http.delete('/users/' + $state.params.id + '/todos/' + $state.params.todoID + '.json')
+    todo.deleteTodo($state.params.id, $state.params.todoID)
       .then(function(response){
-        todo.setTodo({});
         $state.go('home');
       }, function(error) {
         $state.go('home');
