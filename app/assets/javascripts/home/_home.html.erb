@@ -1,6 +1,6 @@
 <div ng-show="signedIn()">
 
-  <div id="main-table" class="clear">
+  <div ng-show="todos.length" id="main-table" class="clear">
     <table ng-table="todoTable" class="table todo-table table-responsive table-striped table-hover">
         <tr ng-repeat="todo in $data">
             <td title="'Title'" sortable="'title'">
@@ -9,8 +9,6 @@
                 {{todo.description}}</td>
             <td title="'Started'" sortable="'time_started'">
                 {{formatTime(todo.time_started)}}</td>
-            <td title="'Planned'" sortable="'expected_finished'">
-                {{formatTime(todo.planned)}}</td>
             <td title="'Finished'" sortable="'time_finished'">
                 {{formatTime(todo.time_finished)}}</td>
             <td title="'Pomos Completed'" sortable="'completed_pomos'">
