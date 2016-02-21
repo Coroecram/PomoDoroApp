@@ -13,7 +13,6 @@ function($scope, $state, Auth){
     }, function(error){
     });
   };
-
   $scope.signup = function() {
     Auth.register($scope.user).then(function(){
       $state.go('home');
