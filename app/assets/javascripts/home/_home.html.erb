@@ -2,21 +2,21 @@
 
   <div ng-show="todos.length" id="main-table" class="clear">
     <table ng-table="todoTable" class="table todo-table table-responsive table-striped table-hover">
-        <tr ng-repeat="todo in $data">
-            <td title="'Title'" sortable="'title'">
-                {{todo.title}}</td>
-            <td title="'Description'" sortable="'description'">
-                {{todo.description}}</td>
-            <td title="'Started'" sortable="'time_started'">
-                {{formatTime(todo.time_started)}}</td>
-            <td title="'Finished'" sortable="'time_finished'">
-                {{formatTime(todo.time_finished)}}</td>
-            <td title="'Pomos Completed'" sortable="'completed_pomos'">
-                {{todo.completed_pomos}}</td>
-            <td title="'Pomos Expected'" sortable="'expected_pomos'">
-                {{todo.expected_pomos}}</td>
-            <td title="'Priority'" sortable="'priority'">
-                {{todo.priority}}</td>
+        <tr ng-repeat="todo in $data" ng-click="todoPage(todo.id)">
+          <td title="'Title'" sortable="'title'">
+              {{todo.title}}</td>
+          <td title="'Description'" sortable="'description'">
+              {{todo.description}}</td>
+          <td title="'Started'" sortable="'time_started'">
+              {{formatTime(todo.time_started)}}</td>
+          <td title="'Finished'" sortable="'time_finished'">
+              {{formatTime(todo.time_finished)}}</td>
+          <td title="'Pomos Completed'" sortable="'completed_pomos'">
+              {{todo.completed_pomos}}</td>
+          <td title="'Pomos Expected'" sortable="'expected_pomos'">
+              {{todo.expected_pomos}}</td>
+          <td title="'Priority'" sortable="'priority'">
+              {{todo.priority}}</td>
         </tr>
     </table>
   </div>

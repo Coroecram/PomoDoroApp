@@ -40,8 +40,19 @@ angular.module('pomoDoro', [
               $state.go('signin');
             });
           }]
+      })
+      .state('todo', {
+        url: '/users/{id}/todos/{todoID}',
+        templateUrl: 'todo/_todo.html',
+        controller: 'todoController',
+        onEnter: ['$state', 'Auth', 'user', function($state, Auth, user) {
+          Auth.currentUser().then(function(currentUser) {
+              parseInt($state.params.id, 10) == currentUser.id ? true : $state.go('home');
+            }, function(error) {
+              $state.go('signin');
+            });
+          }]
       });
-
 
   $urlRouterProvider.otherwise('home');
 }])

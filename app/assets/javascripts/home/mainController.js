@@ -45,6 +45,10 @@ angular.module('pomoDoro')
            });
        });
      });
+    $scope.todoPage = function (todoID){
+      var id = $scope.user.id;
+      $state.transitionTo('todo', {id: id, todoID: todoID});
+    };
     $scope.addTodo = function() {
       if (!$scope.title || $scope.title === '' && $scope.user.id) { return };
           var todo = {
