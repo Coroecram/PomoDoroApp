@@ -3,6 +3,7 @@ angular.module('pomoDoro', [
   'templates',
   'Devise',
   'ngTable',
+  'timer'
 ])
 .config(function(AuthInterceptProvider) {
         AuthInterceptProvider.interceptAuth(true);

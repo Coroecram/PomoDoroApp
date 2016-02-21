@@ -14,6 +14,13 @@ function($scope, $state, $filter, todo) {
       $state.go('home');
     });
   }
+  $scope.timer = false;
+  $scope.countdown = "25:00";
+
+  $scope.start = function() {
+
+  }
+
   $scope.iterate = function(max) {
     var iterated = [];
     for (var i = 0; i < max; i++) {

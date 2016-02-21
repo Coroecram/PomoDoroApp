@@ -12,3 +12,8 @@
   opacity: 0.4;
   filter: alpha(opacity=40);
 }
+
+.active-pomo {
+  opacity: 0;
+  filter: alpha(opacity=0);
+}

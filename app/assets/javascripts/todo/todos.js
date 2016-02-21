@@ -1,7 +1,8 @@
 angular.module('pomoDoro')
 .factory('todo', [
   '$http',
-  function($http, $state) {
+  '$filter',
+  function($http, $filter) {
     var o = {};
 
     o.setTodo = function(todo) {
