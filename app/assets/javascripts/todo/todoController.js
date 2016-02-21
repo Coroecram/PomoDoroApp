@@ -2,6 +2,7 @@ angular.module('pomoDoro')
 .controller('todoController', [
 '$scope',
 '$state',
-function($scope, $state){
-  
+'todo',
+function($scope, $state, todo) {
+  $scope.todo = todo.todo;
 }]);
