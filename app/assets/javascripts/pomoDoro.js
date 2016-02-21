@@ -17,7 +17,6 @@ angular.module('pomoDoro', [
         controller: 'mainController',
         onEnter: ['$state', 'Auth', 'user', function($state, Auth, user) {
           Auth.currentUser().then(function(currentUser) {
-              user.getTodos(currentUser.id);
             }, function(error) {
               $state.go('signin');
             });
@@ -26,17 +25,36 @@ angular.module('pomoDoro', [
       .state('signin', {
         url: '/signin',
         templateUrl: 'session/_signIn.html',
-        controller: 'sessionController'
+        controller: 'sessionController',
+        onEnter: ['$state', 'Auth', 'user', function($state, Auth, user) {
+          Auth.currentUser().then(function(currentUser) {
+              $state.go('home');
+            }, function(error) {
+            });
+          }]
       })
       .state('signup', {
         url: '/signup',
         templateUrl: 'session/_signUp.html',
         controller: 'sessionController',
+        onEnter: ['$state', 'Auth', 'user', function($state, Auth, user) {
+          Auth.currentUser().then(function(currentUser) {
+              $state.go('home');
+            }, function(error) {
+            });
+          }]
       })
       .state('user', {
         url: '/users/{id}',
         templateUrl: 'user/_user.html',
-        controller: 'userController'
+        controller: 'userController',
+        onEnter: ['$state', 'Auth', 'user', function($state, Auth, user) {
+          Auth.currentUser().then(function(currentUser) {
+              parseInt($state.params.id, 10) == currentUser.id ? true : $state.go('home');
+            }, function(error) {
+              $state.go('signin');
+            });
+          }]
       });
 
 

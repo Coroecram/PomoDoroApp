@@ -7,12 +7,12 @@ angular.module('pomoDoro')
     };
     o.getTodos = function(id) {
       return $http.get('/users/' + id + '/todos.json').success(function(data){
-        angular.copy(data, o.user);
+        angular.copy(data, o.todos);
       });
     };
     o.createTodo = function(todo) {
       return $http.post('/users/' + todo.user_id + '/todos.json', todo).success(function(data){
-        o.todos.push(data);
+        this.todos.push(data);
       });
     };
 
