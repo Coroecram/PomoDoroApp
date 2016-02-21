@@ -4,6 +4,9 @@ angular.module('pomoDoro', [
   'Devise',
   'ngTable',
 ])
+.config(function(AuthInterceptProvider) {
+        AuthInterceptProvider.interceptAuth(true);
+})
 .config([
   '$stateProvider',
   '$urlRouterProvider',

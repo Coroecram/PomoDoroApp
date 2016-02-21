@@ -22,4 +22,6 @@ function($scope, $state, Auth){
     $scope.user = {};
     $state.go('signin');
   });
+
+
 }]);

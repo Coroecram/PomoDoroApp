@@ -6,8 +6,8 @@ angular.module('pomoDoro')
     var o = {
       todos: []
     };
-    o.setInfo = function(user) {
-      o.info = user;
+    o.setInfo = function(data) {
+      o.info = data;
     };
     o.getTodos = function() {
       var promise = $http.get('/users/' + o.info.id + '/todos.json').then(function(response){

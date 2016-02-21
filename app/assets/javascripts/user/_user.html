@@ -1,39 +1,38 @@
 <div class="page-header">
-  <h1>Pomo D'Oro</h1>
+  <span class="profile-title">User Profile</span>
+  <span class="edit-profile" ng-click="edit()">Edit Profile</span>
 </div>
 
-<div ng-repeat="todo in todos | orderBy:'-upvotes'">
-  <span style="font-size:20px; margin-left:10px;">
-    <a href="users/{{user_id}}/todos/{{todo.id}}">
-      {{todo.title}}
-    </a>
-    <div class='todo-desc' ng-show="todo.description">
-      {{todo.description}}
-    </div>
-    <div ng-repeat="completed in range(todo.completed_pomos)">
-      <p>COMPLETED{{completed}}</p>
-    </div>
-    <div ng-repeat="expected in range(todo.expected_pomos - todo.completed_pomos)">
-      <p>ExpecTED: {{key}}</p>
-    </div>
-  </span>
+<div ng-hide="editing">
+  <h1>User Info</h1>
+  <ul class="user-info">
+    <li>Username: {{user.info.username}}<li>
+    <li>Email: {{user.info.email}}<li>
+    <li># of Todos: {{user.todos.length}}<li>
+  </ul>
 </div>
 
-<form ng-submit="addTodo()"
-  style="margin-top:30px;">
-  <h3>Add a New Task</h3>
+<div ng-show="editing" >
+  <form ng-submit="addTodo()"
+    style="margin-top:30px;">
+    <h3>Add a New Task</h3>
 
-  <div class="task-input-title">
-    <input type="text"
-    class="form-control"
-    placeholder="Title"
-    ng-model="title"></input>
-  </div>
-  <div class="task-input-desc">
-    <input type="text"
-    class="form-control"
-    placeholder="Description"
-    ng-model="desc"></input>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <div class="task-input-title">
+      <input type="text"
+      class="form-control"
+      placeholder="Title"
+      ng-model="title"></input>
+    </div>
+    <div class="task-input-desc">
+      <input type="text"
+      class="form-control"
+      placeholder="Description"
+      ng-model="desc"></input>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <ul class="edit-buttons">
+    <li class="cancel" ng-click="stopEdit()">Cancel</li>
+    <li class="save-changes" ng-click="saveChanges()">Save Changes</li>
+  </ul>
+</div>
