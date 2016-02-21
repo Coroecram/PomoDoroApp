@@ -23,7 +23,7 @@ angular.module('pomoDoro')
                  completed_pomos: 'asc'
              }
          }, {
-            counts: [1,3,5,10],       
+            counts: [1,3,5,10],
              total: $scope.data.length,
              getData: function($defer, params) {
                  var orderedData = params.sorting() ?
@@ -34,34 +34,20 @@ angular.module('pomoDoro')
              }
            });
        });
-
-      // $scope.todoTable = new ngTableParams({
-      //   page: 1,
-      //   count: 3
-      // }, {
-      //     getData: function ($defer, params) {
-      //       $http.get('/users/' + currentUser.id + '/todos.json',
-      //       {params: {
-      //                 pageNumber: params.page()-1,
-      //                 rangeStart: rangeStart,
-      //                 rangeStop: rangeStop
-      //       }}).success(function(data, status) {
-      //           params.total(data.length);
-      //           $defer.resolve(data);
-      //       })
-      //     }
-      // })
     });
     $scope.addTodo = function() {
       if (!$scope.title || $scope.title === '' && $scope.user.id) { return };
-        user.createTodo(
-      {
-        title: $scope.title,
-        description: $scope.desc,
-        user_id: $scope.user.id
-      });
-      $scope.title = '';
-      $scope.desc = '';
+          var todo = {
+                      title: $scope.title,
+                      description: $scope.desc,
+                      user_id: $scope.user.id
+                      };
+          $http.post('/users/' + todo.user_id + '/todos.json', todo).success(function(data){
+            $scope.data.push(data);
+            $scope.todoTable.reload();
+          });
+        $scope.title = '';
+        $scope.desc = '';
     };
 
     $scope.iterate = function(max) {
