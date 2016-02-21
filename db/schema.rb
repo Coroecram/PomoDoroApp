@@ -11,23 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160219200153) do
+ActiveRecord::Schema.define(version: 20160221050529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "todos", force: :cascade do |t|
-    t.string   "title",             limit: 45,                 null: false
+    t.string   "title",           limit: 45,                 null: false
     t.text     "description"
-    t.integer  "expected_pomos",               default: 1,     null: false
-    t.integer  "completed_pomos",              default: 0,     null: false
+    t.integer  "expected_pomos",             default: 1,     null: false
+    t.integer  "completed_pomos",            default: 0,     null: false
     t.datetime "time_started"
-    t.datetime "expected_finished"
+    t.datetime "planned"
     t.datetime "time_finished"
-    t.boolean  "started",                      default: false, null: false
-    t.boolean  "finished",                     default: false, null: false
-    t.integer  "priority",                     default: 0,     null: false
-    t.integer  "user_id",                                      null: false
+    t.boolean  "started",                    default: false, null: false
+    t.boolean  "finished",                   default: false, null: false
+    t.integer  "priority",                   default: 0,     null: false
+    t.integer  "user_id",                                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

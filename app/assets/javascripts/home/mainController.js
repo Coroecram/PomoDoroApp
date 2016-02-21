@@ -15,7 +15,6 @@ angular.module('pomoDoro')
       $http.get('/users/' + currentUser.id + '/todos.json')
        .success(function(data, status) {
          for (var i = 0; i < data.length; i++) {
-           debugger
            data[i].time_started = (data[i].time_started ? new Date(data[i].time_started) : '');
            data[i].time_finished = (data[i].time_finished ? new Date(data[i].time_finished) : '');
            data[i].planned = (data[i].planned ? new Date(data[i].planned) : '');
