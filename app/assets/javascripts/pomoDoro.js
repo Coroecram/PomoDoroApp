@@ -19,22 +19,12 @@ angular.module('pomoDoro', [
       .state('signin', {
         url: '/signin',
         templateUrl: 'session/_signIn.html',
-        controller: 'sessionController',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
-          if(Auth.isAuthenticated()) {
-              $state.go('home');
-            }
-          }]
+        controller: 'sessionController'
       })
       .state('signup', {
         url: '/signup',
         templateUrl: 'session/_signUp.html',
-        controller: 'sessionController',
-        onEnter: ['$state', 'Auth', function($state, Auth) {
-          if(Auth.isAuthenticated()) {
-              $state.go('home');
-            }
-          }]
+        controller: 'sessionController'
       })
       .state('user', {
         url: '/users/{id}',
