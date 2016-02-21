@@ -4,21 +4,24 @@ angular.module('pomoDoro')
   '$http',
   '$filter',
   '$state',
+  'user',
   'Auth',
   'ngTableParams',
-  function($scope, $http, $filter, $state, Auth, ngTableParams) {
+  function($scope, $http, $filter, $state, user, Auth, ngTableParams) {
     $scope.signedIn = Auth.isAuthenticated;
     if(Auth._currentUser) {
+      user.setInfo(Auth._currentUser);
       $scope.user = Auth._currentUser;
 
-      $http.get('/users/' + Auth._currentUser.id + '/todos.json')
-       .success(function(data, status) {
+      user.getTodos()
+       .then(function(response) {
+         var data = user.todos;
          for (var i = 0; i < data.length; i++) {
            data[i].time_started = (data[i].time_started ? new Date(data[i].time_started) : '');
            data[i].time_finished = (data[i].time_finished ? new Date(data[i].time_finished) : '');
            data[i].planned = (data[i].planned ? new Date(data[i].planned) : '');
          }
-         $scope.data = data;
+         $scope.todos = data;
 
          $scope.todoTable = new ngTableParams({
              page: 1,
@@ -28,11 +31,11 @@ angular.module('pomoDoro')
              }
          }, {
             counts: [1,3,5,10],
-             total: $scope.data.length,
+             total: $scope.todos.length,
              getData: function($defer, params) {
                  var orderedData = params.sorting() ?
-                                     $filter('orderBy')($scope.data, params.orderBy()) :
-                                     $scope.data;
+                                     $filter('orderBy')($scope.todos, params.orderBy()) :
+                                     $scope.todos;
 
                  $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
              }
@@ -49,13 +52,12 @@ angular.module('pomoDoro')
                       user_id: $scope.user.id
                       };
           $http.post('/users/' + todo.user_id + '/todos.json', todo).success(function(data){
-            $scope.data.push(data);
+            $scope.todos.push(data);
             $scope.todoTable.reload();
           });
         $scope.title = '';
         $scope.desc = '';
     };
-
     $scope.iterate = function(max) {
       var iterated = [];
       for (var i = 0; i < max; i++) {
