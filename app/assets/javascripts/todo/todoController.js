@@ -5,19 +5,25 @@ angular.module('pomoDoro')
 '$filter',
 'todo',
 function($scope, $state, $filter, todo) {
-  if(todo.todo) {
-    $scope.todo = todo.todo
-  } else {
-    todo.getTodo($state.params.id, $state.params.todoID).then(function(response){
-      $scope.todo = response.data;
-    }, function(error) {
-      $state.go('home');
-    });
-  }
   var finishFailSafe = function() {
     $scope.todo.completed_pomos += 1;
     $scope.reset();
   };
+  var getTodo = function(success, failure) {
+    todo.getTodo($state.params.id, $state.params.todoID).then(function(response){
+      success(response);
+    }, function(error) {
+      failure(error);
+    });
+  };
+  if(todo.todo) {
+    $scope.todo = todo.todo
+  } else {
+    var success = function(response) { $scope.todo = response.data; };
+    var failure = function (error) { $state.go('home'); };
+    getTodo(success, failure);
+  }
+
   $scope.countdown = 1500;
 
   $scope.start = function() {
@@ -39,13 +45,15 @@ function($scope, $state, $filter, todo) {
   };
   $scope.timerFinished = function() {
     $scope.timerRunning = false;
+    var success = function(response) {
+      $scope.todo = response.data;
+      $scope.reset();
+    };
+    var failure = function(error) {
+      finishFailSafe();
+    }
     todo.completePomo().then(function(response) {
-      todo.getTodo($state.params.id, $state.params.todoID).then(function(response){
-        $scope.todo = response.data;
-        $scope.reset();
-      }, function(error) {
-        finishFailSafe();
-      });
+      getTodo(success, failure);
     }, function(error) {
         finishFailSafe();
     });

@@ -13,6 +13,7 @@ class Todo < ActiveRecord::Base
   def complete!
     self.time_finished = Time.now
     self.finished = true
+    self.save!
   end
 
   def pomo_completed!

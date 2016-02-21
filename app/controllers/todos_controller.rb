@@ -22,6 +22,13 @@ class TodosController < ApplicationController
     respond_with todo
   end
 
+  def finish_todo
+    todo = Todo.find(params[:id])
+    todo.complete!
+
+    respond_with todo
+  end
+
   private
   def todo_params
     params.require(:todo).permit(:title, :description, :user_id)

@@ -16,3 +16,7 @@
   opacity: 0;
   filter: alpha(opacity=0);
 }
+
+.todo-options > div {
+  cursor: pointer;
+}
