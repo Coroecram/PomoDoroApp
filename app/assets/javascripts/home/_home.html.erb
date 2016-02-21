@@ -8,11 +8,11 @@
             <td title="'Description'" sortable="'description'">
                 {{todo.description}}</td>
             <td title="'Start Time'" sortable="'time_started'">
-                {{todo.time_started}}</td>
-            <td title="'Next Planned'" sortable="'expected_finished'">
-                {{todo.expected_finished}}</td>
+                {{formatTime(todo.time_started)}}</td>
+            <td title="'Planned'" sortable="'expected_finished'">
+                {{formatTime(todo.planned)}}</td>
             <td title="'Finished At'" sortable="'time_finished'">
-                {{todo.time_finished}}</td>
+                {{formatTime(todo.time_finished)}}</td>
             <td title="'Completed Pomos'" sortable="'completed_pomos'">
                 {{todo.completed_pomos}}</td>
             <td title="'Total Pomos'" sortable="'expected_pomos'">
