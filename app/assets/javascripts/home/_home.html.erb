@@ -1,9 +1,9 @@
-<div ng-hide="signedIn()">
+<div ng-show="signedIn()">
   <div class="page-header">
     <h1>Pomo D'Oro</h1>
   </div>
 
-  <table ng-table="vm.tableParams" class="table" show-filter="true">
+  <table ng-table="todoTable" class="table" show-filter="true">
       <tr ng-repeat="todo in $data">
           <td title="'Title'" filter="{ title: 'text'}" sortable="'title'">
               {{todo.title}}</td>

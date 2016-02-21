@@ -3,20 +3,6 @@
   filter: alpha(opacity=40);
 }
 
-.pomodoro-list {
-  position: relative;
-  width: 150px;
-}
-.pomodoro-list li {
-  position: relative;
-  float: left;
-  padding: 5px;
-  height: auto;
-  width: 50px;
-}
-
-.pomodoro-list img {
-  position: relative;
-  width: 100%;
-  height: auto;
+.ng-table-counts {
+  margin: 20px 0;
 }
