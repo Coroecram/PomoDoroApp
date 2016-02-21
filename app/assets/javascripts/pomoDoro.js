@@ -14,34 +14,26 @@ angular.module('pomoDoro', [
       .state('home', {
         url: '/home',
         templateUrl: 'home/_home.html',
-        controller: 'mainController',
-        onEnter: ['$state', 'Auth', 'user', function($state, Auth, user) {
-          Auth.currentUser().then(function(currentUser) {
-            }, function(error) {
-              $state.go('signin');
-            });
-          }]
+        controller: 'mainController'
       })
       .state('signin', {
         url: '/signin',
         templateUrl: 'session/_signIn.html',
         controller: 'sessionController',
-        onEnter: ['$state', 'Auth', 'user', function($state, Auth, user) {
-          Auth.currentUser().then(function(currentUser) {
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if(Auth.isAuthenticated()) {
               $state.go('home');
-            }, function(error) {
-            });
+            }
           }]
       })
       .state('signup', {
         url: '/signup',
         templateUrl: 'session/_signUp.html',
         controller: 'sessionController',
-        onEnter: ['$state', 'Auth', 'user', function($state, Auth, user) {
-          Auth.currentUser().then(function(currentUser) {
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          if(Auth.isAuthenticated()) {
               $state.go('home');
-            }, function(error) {
-            });
+            }
           }]
       })
       .state('user', {
