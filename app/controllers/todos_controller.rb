@@ -11,7 +11,8 @@ class TodosController < ApplicationController
   end
 
   def show
-    respond_with Todo.find(params[:id])
+    todo = Todo.find(params[:id])
+    respond_with todo
   end
 
   def complete_pomo

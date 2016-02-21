@@ -65,13 +65,6 @@ angular.module('pomoDoro')
         $scope.title = '';
         $scope.desc = '';
     };
-    $scope.iterate = function(max) {
-      var iterated = [];
-      for (var i = 0; i < max; i++) {
-        iterated.push(i);
-      }
-      return iterated;
-    };
     $scope.formatTime = function(date) {
       return $filter('date')(date, 'MMM d, yyyy hh:mm a')
     }
