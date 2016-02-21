@@ -52,11 +52,3 @@ angular.module('pomoDoro', [
 
   $urlRouterProvider.otherwise('home');
 }])
-
-// resolve: {
-//   postPromise: ['Auth', 'user', function(Auth, user){
-//     return Auth.currentUser().then(function (currentUser) {
-//       user.getTodos(currentUser.id);
-//     });
-//   }]
-// },

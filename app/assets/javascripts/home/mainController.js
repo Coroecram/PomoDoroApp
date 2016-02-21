@@ -7,10 +7,11 @@ angular.module('pomoDoro')
   'Auth',
   'ngTableParams',
   function($scope, $http, $filter, $state, Auth, ngTableParams) {
-    Auth.currentUser().then(function (currentUser){
-      $scope.user = currentUser;
+    $scope.signedIn = Auth.isAuthenticated;
+    if(Auth._currentUser) {
+      $scope.user = Auth._currentUser;
 
-      $http.get('/users/' + currentUser.id + '/todos.json')
+      $http.get('/users/' + Auth._currentUser.id + '/todos.json')
        .success(function(data, status) {
          for (var i = 0; i < data.length; i++) {
            data[i].time_started = (data[i].time_started ? new Date(data[i].time_started) : '');
@@ -37,9 +38,9 @@ angular.module('pomoDoro')
              }
            });
        });
-     }, function(error) {
-          $state.go('signin');
-        });
+     } else {
+         $state.go('signin');
+     };
     $scope.addTodo = function() {
       if (!$scope.title || $scope.title === '' && $scope.user.id) { return };
           var todo = {

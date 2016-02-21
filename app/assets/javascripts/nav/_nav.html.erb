@@ -8,7 +8,7 @@
     <li ng-hide="signedIn()"><a href="#/signup">Register</a></li>
     <li ng-show="signedIn()"><a href="#/home">Home</a></li>
     <li ng-show="signedIn()"><a href="#/">{{ user.username }}</a></li>
-    <li ng-show="signedIn()"><a href="#/signin" ng-click="signOut()">Sign Out</a></li>
+    <li ng-show="signedIn()"><a href="#/" ng-click="signOut()">Sign Out</a></li>
   </ul>
 </div>
 <div class="clear"></div>
