@@ -14,13 +14,25 @@ function($scope, $state, $filter, todo) {
       $state.go('home');
     });
   }
-  $scope.timer = false;
-  $scope.countdown = "25:00";
+  $scope.countdown = 1500;
 
   $scope.start = function() {
-
-  }
-
+    $scope.timerRunning = true;
+    $scope.timerStarted ? $scope.$broadcast('timer-resume') : $scope.$broadcast('timer-start');
+    $scope.timerStarted = true;
+  };
+  $scope.pause = function() {
+    $scope.timerRunning = false;
+    $scope.$broadcast('timer-stop');
+  };
+  $scope.reset = function() {
+     if (($scope.timerStarted)) {
+           $scope.$broadcast('timer-reset');
+     }
+     if ($scope.timerRunning) {
+       $scope.start()
+     }
+  };
   $scope.iterate = function(max) {
     var iterated = [];
     for (var i = 0; i < max; i++) {

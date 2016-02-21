@@ -12,10 +12,16 @@
   </div>
 </div>
 <div class="todo-options">
-  <div ng-hide="timer" ng-click="start()">Start Timer</div>
-  <div ng-show="timer" ng-click="pause()">Pause Timer</div>
+  <div ng-hide="timerRunning" ng-click="start()">Start Timer</div>
+  <div ng-show="timerRunning" ng-click="pause()">Pause Timer</div>
+  <div ng-click="reset()">Reset Timer</div>
   <div ng-click="complete()">Complete Task</div>
   <div ng-click="edit()">Edit Task</div>
   <div ng-click="delete()">Delete Task</div>
 </div>
-<timer countdown="10041" max-time-unit="'minute'" interval="1000">{{mminutes}} minute{{minutesS}}, {{sseconds}} second{{secondsS}}</timer>
+<timer
+       countdown="1500"
+       interval="1000"
+       autostart="false">
+         {{mminutes}}:{{sseconds}}
+</timer>
