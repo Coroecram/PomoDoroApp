@@ -1,16 +1,27 @@
 <div ng-show="signedIn()">
-  <div class="page-header">
-    <h1>Pomo D'Oro</h1>
-  </div>
 
-  <table ng-table="todoTable" class="table" show-filter="true">
-      <tr ng-repeat="todo in $data">
-          <td title="'Title'" filter="{ title: 'text'}" sortable="'title'">
-              {{todo.title}}</td>
-          <td title="'Description'" filter="{ description: 'text'}" sortable="'description'">
-              {{todo.description}}</td>
-      </tr>
-  </table>
+  <div id="main-table" class="clear">
+    <table ng-table="todoTable" class="table todo-table table-responsive table-striped table-hover">
+        <tr ng-repeat="todo in $data">
+            <td title="'Title'" sortable="'title'">
+                {{todo.title}}</td>
+            <td title="'Description'" sortable="'description'">
+                {{todo.description}}</td>
+            <td title="'Start Time'" sortable="'time_started'">
+                {{todo.time_started}}</td>
+            <td title="'Next Planned'" sortable="'expected_finished'">
+                {{todo.expected_finished}}</td>
+            <td title="'Finished At'" sortable="'time_finished'">
+                {{todo.time_finished}}</td>
+            <td title="'Completed Pomos'" sortable="'completed_pomos'">
+                {{todo.completed_pomos}}</td>
+            <td title="'Total Pomos'" sortable="'expected_pomos'">
+                {{todo.expected_pomos}}</td>
+            <td title="'Priority'" sortable="'priority'">
+                {{todo.priority}}</td>
+        </tr>
+    </table>
+  </div>
 
   <form ng-submit="addTodo()"
     style="margin-top:30px;">

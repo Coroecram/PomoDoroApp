@@ -3,6 +3,19 @@
   filter: alpha(opacity=40);
 }
 
+#main-table {
+  display: block;
+  width: 100%;
+}
+
+todo-table {
+  float: left;
+}
+
+.table-hover td {
+  cursor: pointer;
+}
+
 .ng-table-counts {
   margin: 20px 0;
 }
