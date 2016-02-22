@@ -18,23 +18,5 @@
         </tr>
     </table>
   </div>
-
-  <form ng-submit="addTodo()"
-    style="margin-top:30px;">
-    <h3>Add a New Task</h3>
-
-    <div class="task-input-title">
-      <input type="text"
-      class="form-control"
-      placeholder="Title"
-      ng-model="title"></input>
-    </div>
-    <div class="task-input-desc">
-      <input type="text"
-      class="form-control"
-      placeholder="Description"
-      ng-model="desc"></input>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  <span class="btn btn-default" ng-click="addTodoPage()">Add a new Todo</span>
 </div>

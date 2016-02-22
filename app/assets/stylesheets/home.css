@@ -19,3 +19,7 @@ todo-table {
 .ng-table-counts {
   margin: 20px 0;
 }
+
+.new-todo-form label {
+  display: block;
+}

@@ -13,9 +13,9 @@ angular.module('pomoDoro')
       $state.go('signin');
     });
     $scope.signedIn = Auth.isAuthenticated;
-    Auth.currentUser().then(function() {
-      user.setInfo(Auth._currentUser);
-      $scope.user = Auth._currentUser;
+    Auth.currentUser().then(function(data) {
+      user.setInfo(data);
+      $scope.user = data;
 
       user.getTodos()
        .then(function(response) {
@@ -60,6 +60,9 @@ angular.module('pomoDoro')
       var id = $scope.user.id;
       todo.setTodo(passedTodo);
       $state.transitionTo('todo', {id: id, todoID: passedTodo.id});
+    };
+    $scope.addTodoPage = function() {
+      $state.transitionTo('new-todo', {id: $scope.user.id});
     };
     $scope.addTodo = function() {
       if (!$scope.title || $scope.title === '' && $scope.user.id) { return };

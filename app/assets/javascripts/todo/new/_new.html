@@ -1,0 +1,13 @@
+<h1>Create a new Todo</h1>
+<form class="new-todo-form clear" ng-submit="addTodo()">
+    <label>Title<textarea maxLength="45" class="form-control" placeholder="Title must be 3 characters" ng-model="title"></textarea></label>
+    <label>Description<textarea maxlength="140" class="form-control" ng-model="description"></textarea></label>
+    <label>Time Started<input type="datetime-local"  class="form-control" ng-model="time_started"></label>
+    <label>Time Finished<input type="datetime-local" class="form-control" ng-model="time_finished"></label>
+    <label>Started<input type="checkbox" ng-model="started"></label>
+    <label>Finished<input type="checkbox" ng-model="finished"></label>
+    <label>Completed Pomos<input type="number" class="form-control" min="0" ng-model="completed_pomos"></label>
+    <label>Expected Pomos<input type="number" class="form-control" min="1" max="6" ng-model="expected_pomos"></label>
+
+  <input type="submit" class="btn btn-default" value="Submit">
+</form>
