@@ -7,6 +7,8 @@ angular.module('pomoDoro')
     var o = {};
 
     o.setTodo = function(todo) {
+      todo.time_started = new Date(todo.time_started);
+      todo.time_finished = new Date(todo.time_started);
       o.todo = todo;
     };
     o.getTodo = function(userID, todoID) {

@@ -93,5 +93,5 @@ function($scope, $state, $filter, todo) {
   };
   $scope.formatTime = function(date) {
     return $filter('date')(date, 'MMM d, yyyy hh:mm a')
-  }
+  };
 }]);
