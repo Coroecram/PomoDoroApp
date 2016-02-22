@@ -262,6 +262,7 @@ DEPENDENCIES
   database_cleaner
   devise (~> 3.4.0)
   email_validator
+  execjs
   factory_girl_rails
   faker
   guard-rspec
