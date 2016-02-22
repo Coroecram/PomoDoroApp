@@ -74,6 +74,19 @@ function($scope, $state, $filter, todo) {
   $scope.completeTodo = function() {
     $scope.timerRunning = false;
     var success = function(response) {
+      var coeff = 1000 * 60; // deal only in whole minutes.
+        if(response.data.time_started) {
+           var time_started = new Date(response.data.time_started)
+           response.data.time_started = new Date(Math.round(time_started.getTime() / coeff) * coeff);
+         }
+         if(response.data.time_finished) {
+           var time_finished = new Date(response.data.time_finished);
+           response.data.time_finished = new Date(Math.round(time_finished.getTime() / coeff) * coeff);
+         }
+         if(response.data.planned) {
+           var planned = new Date(response.data.planned);
+           response.data.planned = new Date(Math.round(planned.getTime() / coeff) * coeff);
+         }
       $scope.todo = response.data;
       $scope.edit = response.data;
       $scope.reset();
