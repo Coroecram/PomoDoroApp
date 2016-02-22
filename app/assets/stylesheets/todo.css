@@ -1,4 +1,6 @@
-
+.pomo-items {
+  margin: 10px auto;
+}
 
 .pomo-items img {
   float: left;
@@ -19,4 +21,10 @@
 
 .todo-options > div {
   cursor: pointer;
+}
+
+timer {
+  margin: 20px 0 0 20px;
+  font-size: 44px;
+  font-weight: bold;
 }

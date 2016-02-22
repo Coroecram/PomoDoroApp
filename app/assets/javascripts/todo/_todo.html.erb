@@ -1,8 +1,9 @@
-<h1>{{todo.title}}</h1>
-<div>{{todo.description}}</div>
+<h3>{{todo.title}}</h3>
+<p class="lead">{{todo.description}}</p>
 <div ng-show="todo.started">Started: {{formatTime(todo.time_started)}}</div>
 <div ng-show="todo.finished">Completed: {{formatTime(todo.time_finished)}}</div>
-<div class="pomo-items clear"> Pomo D'Oros
+<h4>Pomo D'oros</h4>
+<div class="pomo-items clear">
   <div ng-repeat="complete in iterate(todo.completed_pomos)">
     <img class='completed-pomo' src="<%= image_path('Golden_Apple_Small.png')%>">
   </div>
@@ -13,25 +14,29 @@
 <div class="todo-options">
   <div ng-hide="timerRunning || todo.finished"
        ng-disabled="timerRunning || todo.finished"
+       class="btn btn-success"
        ng-click="start()">
        Start Timer
   </div>
   <div ng-show="timerRunning && !todo.finished"
        ng-disabled="!timerRunning || todo.finished"
+       class="btn btn-warning"
        ng-click="pause()">
        Pause Timer
   </div>
   <div ng-click="reset()"
-       ng-hide="todo.finished">
+       ng-hide="todo.finished"
+       class="btn btn-info">
        Reset Timer
   </div>
   <div ng-hide="todo.finished"
        ng-disabled="todo.finished"
+       class="btn btn-primary"
        ng-click="completeTodo()">
        Complete Task
   </div>
-  <div ng-click="editTodoPage()">Edit Task</div>
-  <div ng-click="deleteTodo()">Delete Task</div>
+  <div class="btn btn-warning" ng-click="editTodoPage()">Edit Task</div>
+  <div class="btn btn-danger" ng-click="deleteTodo()">Delete Task</div>
 </div>
 <timer
        ng-hide="todo.finished"
