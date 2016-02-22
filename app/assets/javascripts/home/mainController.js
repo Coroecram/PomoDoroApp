@@ -20,10 +20,20 @@ angular.module('pomoDoro')
       user.getTodos()
        .then(function(response) {
          var data = user.todos;
+         var coeff = 1000 * 60; // deal only in whole minutes.
          for (var i = 0; i < data.length; i++) {
-           data[i].time_started = (data[i].time_started ? new Date(data[i].time_started) : '');
-           data[i].time_finished = (data[i].time_finished ? new Date(data[i].time_finished) : '');
-           data[i].planned = (data[i].planned ? new Date(data[i].planned) : '');
+           if(data[i].time_started) {
+              var time_started = new Date(data[i].time_started)
+              data[i].time_started = new Date(Math.round(time_started.getTime() / coeff) * coeff);
+            }
+            if(data[i].time_finished) {
+              var time_finished = new Date(data[i].time_finished);
+              data[i].time_finished = new Date(Math.round(time_finished.getTime() / coeff) * coeff);
+            }
+            if(data[i].planned) {
+              var planned = new Date(data[i].planned);
+              data[i].planned = new Date(Math.round(planned.getTime() / coeff) * coeff);
+            }
          }
          $scope.todos = data;
 
