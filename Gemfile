@@ -37,6 +37,7 @@ gem 'rails_12factor', group: :production
 gem 'kaminari'
 gem 'devise', '~> 3.4.0'
 gem 'email_validator'
+gem 'newrelic_rpm'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views

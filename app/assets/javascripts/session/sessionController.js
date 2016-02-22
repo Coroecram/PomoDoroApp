@@ -11,12 +11,14 @@ function($scope, $state, Auth){
     Auth.login($scope.user).then(function(){
       $state.go('home');
     }, function(error){
+      // never called
     });
   };
   $scope.signup = function() {
     Auth.register($scope.user).then(function(){
       $state.go('home');
     }, function(error){
-      });
+      // parse error.data.errors
+    });
   };
 }]);
