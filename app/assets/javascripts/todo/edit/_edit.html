@@ -1,12 +1,12 @@
 <form class="edit-todo-form clear" ng-submit="signin()">
-    <label>Title<input type="text" class="form-control" placeholder="todo.title" ng-model="todo.title"></label>
-    <label>Description<textarea class="form-control" placeholder="todo.description" ng-model="todo.description"></textarea></label>
-    <label>Time Started<input type="datetime-local" class="form-control" value="todo.time_started" ng-model="todo.time_started"></label>
-    <label>Time Finished<input type="datetime-local" class="form-control" value="todo.time_finished" ng-model="todo.time_finished"></label>
-    <label>Started<input type="checkbox" value="todo.started" ng-model="todo.started"></label>
-    <label>Finished<input type="checkbox" value="todo.finished" ng-model="todo.finished"></label>
-    <label>Completed Pomos<input type="number" class="form-control" min="0" value="todo.completed_pomos" ng-model="todo.completed_pomos"></label>
-    <label>Expected Pomos<input type="number" class="form-control" min="1" max="6" value="todo.expected_pomos" ng-model="todo.expected_pomos"></label>
+    <label>Title<textarea maxLength="45" class="form-control" placeholder="edit.title" ng-model="edit.title"></textarea></label>
+    <label>Description<textarea maxlength="140" class="form-control" placeholder="edit.description" ng-model="edit.description"></textarea></label>
+    <label>Time Started<input type="datetime-local" class="form-control" value="edit.time_started" ng-model="edit.time_started"></label>
+    <label>Time Finished<input type="datetime-local" class="form-control" value="edit.time_finished" ng-model="edit.time_finished"></label>
+    <label>Started<input type="checkbox" value="edit.started" ng-model="edit.started"></label>
+    <label>Finished<input type="checkbox" value="edit.finished" ng-model="edit.finished"></label>
+    <label>Completed Pomos<input type="number" class="form-control" min="0" value="edit.completed_pomos" ng-model="edit.completed_pomos"></label>
+    <label>Expected Pomos<input type="number" class="form-control" min="1" max="6" value="edit.expected_pomos" ng-model="edit.expected_pomos"></label>
 
   <span class="cancel-edit" ng-click="cancel()">Cancel</span>
   <input type="submit" class="btn btn-default" value="Save Changes">

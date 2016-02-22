@@ -17,9 +17,13 @@ function($scope, $state, $filter, todo) {
     });
   };
   if(todo.todo) {
-    $scope.todo = todo.todo
+    $scope.todo = todo.todo;
+    $scope.edit = todo.todo;
   } else {
-    var success = function(response) { $scope.todo = response.data; };
+    var success = function(response) {
+      $scope.todo = response.data;
+      $scope.edit = response.data;
+    };
     var failure = function (error) { $state.go('home'); };
     getTodo(success, failure);
   }
@@ -47,6 +51,7 @@ function($scope, $state, $filter, todo) {
     $scope.timerRunning = false;
     var success = function(response) {
       $scope.todo = response.data;
+      $scope.edit = response.data;
       $scope.reset();
     };
     var failure = function(error) {
@@ -70,6 +75,7 @@ function($scope, $state, $filter, todo) {
     $scope.timerRunning = false;
     var success = function(response) {
       $scope.todo = response.data;
+      $scope.edit = response.data;
       $scope.reset();
     };
     var failure = function(error) {
