@@ -2,7 +2,7 @@
   "name": "angular-ui-router",
   "version": "0.2.18",
   "license" : "MIT",
-  "main": "./release/angular-ui-router.js",
+  "main": "./release/angular-ui-router.min.js",
   "dependencies": {
     "angular": "^1.0.8"
   },

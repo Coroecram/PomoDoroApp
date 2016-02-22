@@ -2,7 +2,7 @@
   "name": "angular",
   "version": "1.5.0",
   "license": "MIT",
-  "main": "./angular.js",
+  "main": "./angular.min.js",
   "ignore": [],
   "dependencies": {
   }

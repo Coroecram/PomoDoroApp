@@ -18,7 +18,7 @@
     "angular-scenario": ">= 1.0.7",
     "angular-mocks": ">= 1.0.7"
   },
-  "main": "./dist/angular-timer.js",
+  "main": "./dist/angular-timer.min.js",
   "ignore": [
     "node_modules",
     "bower_components"
