@@ -5,9 +5,9 @@ angular.module('pomoDoro', [
   'ngTable',
   'timer'
 ])
-.config(function(AuthInterceptProvider) {
+.config(['AuthInterceptProvider', function(AuthInterceptProvider) {
         AuthInterceptProvider.interceptAuth(true);
-})
+}])
 .config([
   '$stateProvider',
   '$urlRouterProvider',
