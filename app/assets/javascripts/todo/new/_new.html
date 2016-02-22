@@ -1,9 +1,11 @@
 <h1>Create a new Todo</h1>
-<form class="new-todo-form clear" ng-submit="addTodo()">
+<form class="todo-form clear" ng-submit="addTodo()">
     <label>Title<textarea maxLength="45" class="form-control" placeholder="Title must be 3 characters" ng-model="title"></textarea></label>
     <label>Description<textarea maxlength="140" class="form-control" ng-model="description"></textarea></label>
     <label>Expected Pomos<input type="number" class="form-control" min="1" max="6" value="1" ng-model="expected_pomos"></label>
 
-  <span class="btn btn-warning" ng-click="cancel()">Cancel</span>
-  <input type="submit" class="btn btn-success" value="Submit">
+    <div class="todo-buttons">
+      <span class="btn btn-warning" ng-click="cancel()">Cancel</span>
+      <input type="submit" class="btn btn-success" value="Save Changes">
+    </div>
 </form>

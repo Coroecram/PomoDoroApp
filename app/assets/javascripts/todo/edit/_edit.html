@@ -1,4 +1,4 @@
-<form class="edit-todo-form clear" ng-submit="editTodo()">
+<form class="todo-form clear" ng-submit="editTodo()">
     <label>Title<textarea maxLength="45" rows="1" class="form-control" placeholder="Title must be 3 characters" ng-model="edit.title"></textarea></label>
     <label>Description<textarea maxlength="140" class="form-control" ng-model="edit.description"></textarea></label>
     <label>Time Started<input type="datetime-local"  class="form-control" value="edit.time_started || 0" ng-model="edit.time_started"></label>
@@ -7,7 +7,7 @@
     <label>Finished <input type="checkbox" value="edit.finished" ng-model="edit.finished"></label>
     <label>Completed Pomos<input type="number" class="form-control" min="0" value="edit.completed_pomos" ng-model="edit.completed_pomos"></label>
     <label>Expected Pomos<input type="number" class="form-control" min="1" max="6" value="edit.expected_pomos" ng-model="edit.expected_pomos"></label>
-  <div class="edit-todo-buttons">
+  <div class="todo-buttons">
     <span class="btn btn-warning" ng-click="cancel()">Cancel</span>
     <input type="submit" class="btn btn-success" value="Save Changes">
   </div>

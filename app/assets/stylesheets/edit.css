@@ -1,14 +1,14 @@
-.edit-todo-form {
+.todo-form {
   display: block;
   width: 50%;
   margin: 10px auto;
 }
 
-.edit-todo-form > label {
+.todo-form > label {
   display: block;
 }
 
-.edit-todo-buttons .btn {
+.todo-buttons .btn {
   float: right;
   margin: 10px;
 }
