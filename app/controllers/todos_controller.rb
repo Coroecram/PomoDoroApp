@@ -10,6 +10,15 @@ class TodosController < ApplicationController
     respond_with user, todo
   end
 
+  def update
+    todo = Todo.find(params[:id])
+    if todo.update(todo_params)
+      respond_with todo
+    else
+      render json: todo.errors.full_messages.to_sentence.to_json, status: 422
+    end
+  end
+
   def show
     todo = Todo.find(params[:id])
     respond_with todo
@@ -37,6 +46,8 @@ class TodosController < ApplicationController
 
   private
   def todo_params
-    params.require(:todo).permit(:title, :description, :user_id)
+    params.require(:todo).permit(:title, :description, :expected_pomos,
+                                 :completed_pomos, :time_started, :time_finished,
+                                 :started, :finished, :user_id)
   end
 end

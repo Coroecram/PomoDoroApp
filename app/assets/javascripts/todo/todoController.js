@@ -87,8 +87,39 @@ function($scope, $state, $filter, todo) {
         finishFailSafe();
     });
   }
-  $scope.editTodo = function() {
+  $scope.editTodoPage = function() {
     $state.transitionTo('edit-todo', {id: $state.params.id, todoID: $state.params.todoID});
+  };
+  $scope.cancel = function() {
+    $state.edit = $state.todo;
+    $state.transitionTo('todo', {id: $state.params.id, todoID: $state.params.todoID});
+  };
+  $scope.editTodo = function() {
+    var params = {
+                  title: $scope.edit.title,
+                  description: $scope.edit.description,
+                  time_started: $scope.edit.time_started,
+                  time_finished: $scope.edit.time_finished,
+                  started: $scope.edit.started,
+                  finished: $scope.edit.finished,
+                  completed_pomos: $scope.edit.completed_pomos,
+                  expected_pomos: $scope.edit.expected_pomos,
+                  user_id: $scope.todo.user_id
+                };
+    var success = function(response) {
+      $scope.todo = response.data;
+      $scope.edit = response.data;
+      $state.transitionTo('todo', {id: $state.params.id, todoID: $state.params.todoID});
+    };
+    var failure = function (error) {
+      console.log(error);
+    };
+
+    todo.editTodo(params).then(function(response){
+      getTodo(success, failure);
+    }, function(error){
+      alert(error.data);
+    });
   };
   $scope.iterate = function(max) {
     var iterated = [];
