@@ -66,17 +66,25 @@ angular.module('pomoDoro')
     };
     $scope.addTodo = function() {
       if (!$scope.title || $scope.title === '' && $scope.user.id) { return };
-          var todo = {
-                      title: $scope.title,
-                      description: $scope.desc,
-                      user_id: $scope.user.id
-                      };
-          $http.post('/users/' + todo.user_id + '/todos.json', todo).success(function(data){
+      var params = {
+                    title: $scope.title,
+                    description: $scope.description,
+                    time_started: $scope.time_started,
+                    time_finished: $scope.time_finished,
+                    started: $scope.started,
+                    finished: $scope.finished,
+                    completed_pomos: $scope.completed_pomos,
+                    expected_pomos: $scope.expected_pomos,
+                    user_id: $scope.user.id
+                  };
+          $http.post('/users/' + $scope.user.id + '/todos.json', params).success(function(data){
             $scope.todos.push(data);
+            $state.go('home');
             $scope.todoTable.reload();
+            $scope.title = '';
+            $scope.description = '';
+            $scope.expected_pomos = undefined;
           });
-        $scope.title = '';
-        $scope.desc = '';
     };
     $scope.formatTime = function(date) {
       return $filter('date')(date, 'MMM d, yyyy hh:mm a')
