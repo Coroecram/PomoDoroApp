@@ -65,7 +65,7 @@ angular.module('pomoDoro')
       $state.transitionTo('new-todo', {id: $scope.user.id});
     };
     $scope.addTodo = function() {
-      if (!$scope.title || $scope.title === '' && $scope.user.id) { return };
+      if (!$scope.title || $scope.title === '') { return };
       var params = {
                     title: $scope.title,
                     description: $scope.description,
@@ -77,13 +77,16 @@ angular.module('pomoDoro')
                     expected_pomos: $scope.expected_pomos,
                     user_id: $scope.user.id
                   };
-          $http.post('/users/' + $scope.user.id + '/todos.json', params).success(function(data){
+
+          $http.post('/users/' + $scope.user.id + '/todos.json', params).then(function(data){
             $scope.todos.push(data);
             $state.go('home');
             $scope.todoTable.reload();
             $scope.title = '';
             $scope.description = '';
             $scope.expected_pomos = undefined;
+          }, function(error) {
+                alert(error.data);
           });
     };
     $scope.formatTime = function(date) {

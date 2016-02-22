@@ -6,8 +6,12 @@ class TodosController < ApplicationController
 
   def create
     user = User.find(params[:user_id])
-    todo = Todo.create(todo_params)
-    respond_with user, todo
+    todo = Todo.new(todo_params)
+    if todo.save
+      respond_with user, todo
+    else
+      render json: todo.errors.full_messages.to_sentence.to_json, status: 422
+    end
   end
 
   def update

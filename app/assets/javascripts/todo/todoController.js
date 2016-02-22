@@ -95,6 +95,7 @@ function($scope, $state, $filter, todo) {
     $state.transitionTo('todo', {id: $state.params.id, todoID: $state.params.todoID});
   };
   $scope.editTodo = function() {
+    if (!$scope.edit.title || $scope.edit.title === '') { return };
     var params = {
                   title: $scope.edit.title,
                   description: $scope.edit.description,
