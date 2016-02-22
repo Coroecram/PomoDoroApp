@@ -1,6 +1,5 @@
 angular.module('pomoDoro', [
   'ui.router',
-  'templates',
   'Devise',
   'ngTable',
   'timer'
