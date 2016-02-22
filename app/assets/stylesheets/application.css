@@ -15,8 +15,15 @@
  *= require_tree
  *= require_self
  */
- 
- .clear:after {
+.ng-scope {
+  margin-bottom: 10px;
+}
+
+ul {
+ list-style: none;
+}
+
+.clear:after {
    content: "";
    display: block;
    clear: both;

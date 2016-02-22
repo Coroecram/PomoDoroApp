@@ -64,6 +64,9 @@ angular.module('pomoDoro')
     $scope.addTodoPage = function() {
       $state.transitionTo('new-todo', {id: $scope.user.id});
     };
+    $scope.cancel = function() {
+      $state.go('home');
+    };
     $scope.addTodo = function() {
       if (!$scope.title || $scope.title === '') { return };
       var params = {

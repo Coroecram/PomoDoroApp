@@ -7,7 +7,8 @@
     <label>Finished<input type="checkbox" value="edit.finished" ng-model="edit.finished"></label>
     <label>Completed Pomos<input type="number" class="form-control" min="0" value="edit.completed_pomos" ng-model="edit.completed_pomos"></label>
     <label>Expected Pomos<input type="number" class="form-control" min="1" max="6" value="edit.expected_pomos" ng-model="edit.expected_pomos"></label>
-
-  <span class="btn btn-warning" ng-click="cancel()">Cancel</span>
-  <input type="submit" class="btn btn-success" value="Save Changes">
+  <div class="edit-todo-buttons">
+    <span class="btn btn-warning" ng-click="cancel()">Cancel</span>
+    <input type="submit" class="btn btn-success" value="Save Changes">
+  </div>
 </form>

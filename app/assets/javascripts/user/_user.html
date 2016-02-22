@@ -1,38 +1,8 @@
-<div class="page-header">
-  <span class="profile-title">User Profile</span>
-  <span class="edit-profile" ng-click="edit()">Edit Profile</span>
-</div>
-
+<h2>User Info</h2>
 <div ng-hide="editing">
-  <h1>User Info</h1>
-  <ul class="user-info">
-    <li>Username: {{user.info.username}}<li>
-    <li>Email: {{user.info.email}}<li>
-    <li># of Todos: {{user.todos.length}}<li>
-  </ul>
-</div>
-
-<div ng-show="editing" >
-  <form ng-submit="addTodo()"
-    style="margin-top:30px;">
-    <h3>Add a New Task</h3>
-
-    <div class="task-input-title">
-      <input type="text"
-      class="form-control"
-      placeholder="Title"
-      ng-model="title"></input>
-    </div>
-    <div class="task-input-desc">
-      <input type="text"
-      class="form-control"
-      placeholder="Description"
-      ng-model="desc"></input>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  <ul class="edit-buttons">
-    <li class="cancel" ng-click="stopEdit()">Cancel</li>
-    <li class="save-changes" ng-click="saveChanges()">Save Changes</li>
-  </ul>
+  <div class="user-info">
+    <p><strong>Username:</strong> {{user.info.username}}</p>
+    <p><strong>Email:</strong> {{user.info.email}}</p>
+    <p><strong># of Todos:</strong> {{user.todos.length}}</p>
+  </div>
 </div>

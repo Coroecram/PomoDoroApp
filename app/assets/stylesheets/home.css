@@ -23,3 +23,7 @@ todo-table {
 .new-todo-form label {
   display: block;
 }
+
+.input-group {
+  margin-bottom: 5px;
+}
