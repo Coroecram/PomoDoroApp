@@ -11,8 +11,15 @@ class Todo < ActiveRecord::Base
   before_validation :default_values
 
   def complete!
-    self.time_finished = Time.now
-    self.finished = true
+    if !self.started
+      self.time_started = Time.now()
+      self.started = true
+    end
+    if !self.finished
+      self.time_finished = Time.now();
+      self.finished = true
+    end
+
     self.save!
   end
 

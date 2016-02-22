@@ -2,7 +2,8 @@ angular.module('pomoDoro')
 .factory('todo', [
   '$http',
   '$filter',
-  function($http, $filter) {
+  '$q',
+  function($http, $filter, $q) {
     var o = {};
 
     o.setTodo = function(todo) {
@@ -18,8 +19,8 @@ angular.module('pomoDoro')
 
       return promise;
     };
-    o.deleteTodo = function(userID, todoID) {
-      var promise = $http.delete('/users/' + userID + '/todos/' + todoID + '.json').then(function(response){
+    o.deleteTodo = function() {
+      var promise = $http.delete('/users/' + o.todo.user_id + '/todos/' + o.todo.id + '.json').then(function(response){
           o.setTodo(response.data);
           return response;
       }, function(response) {
@@ -28,8 +29,17 @@ angular.module('pomoDoro')
 
       return promise;
     };
-    o.completePomo = function() {
+    o.completeTodo = function() {
       var promise = $http.patch('/users/' + o.todo.user_id + '/todos/' + o.todo.id + '/complete.json').then(function(response){
+          return response;
+      }, function(response) {
+          return $q.reject(response);
+      });
+
+      return promise;
+    };
+    o.completePomo = function() {
+      var promise = $http.patch('/users/' + o.todo.user_id + '/todos/' + o.todo.id + '/complete_pomo.json').then(function(response){
           return response;
       }, function(response) {
           return $q.reject(response);

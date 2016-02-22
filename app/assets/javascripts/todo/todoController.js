@@ -59,13 +59,28 @@ function($scope, $state, $filter, todo) {
     });
   };
   $scope.deleteTodo = function() {
-    todo.deleteTodo($state.params.id, $state.params.todoID)
+    todo.deleteTodo()
       .then(function(response){
         $state.go('home');
       }, function(error) {
         $state.go('home');
       })
   };
+  $scope.completeTodo = function() {
+    $scope.timerRunning = false;
+    var success = function(response) {
+      $scope.todo = response.data;
+      $scope.reset();
+    };
+    var failure = function(error) {
+      finishFailSafe();
+    }
+    todo.completeTodo().then(function(response) {
+      getTodo(success, failure);
+    }, function(error) {
+        finishFailSafe();
+    });
+  }
   $scope.iterate = function(max) {
     var iterated = [];
     for (var i = 0; i < max; i++) {

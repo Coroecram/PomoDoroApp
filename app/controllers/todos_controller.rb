@@ -28,7 +28,7 @@ class TodosController < ApplicationController
     respond_with todo
   end
 
-  def finish_todo
+  def complete_todo
     todo = Todo.find(params[:id])
     todo.complete!
 
