@@ -81,6 +81,9 @@ function($scope, $state, $filter, todo) {
         finishFailSafe();
     });
   }
+  $scope.editTodo = function() {
+    $state.transitionTo('edit-todo', {id: $state.params.id, todoID: $state.params.todoID});
+  };
   $scope.iterate = function(max) {
     var iterated = [];
     for (var i = 0; i < max; i++) {
