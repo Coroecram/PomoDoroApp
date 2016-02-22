@@ -6,5 +6,7 @@
 //= require angular-timer
 //= require humanize-duration
 //= require momentjs
+//= require jquery
+//= require bootstrap/dist/js/bootstrap
 //= require pomoDoro
 //= require_tree
