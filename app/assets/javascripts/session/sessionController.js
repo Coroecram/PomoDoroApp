@@ -11,14 +11,14 @@ function($scope, $state, Auth){
     Auth.login($scope.user).then(function(){
       $state.go('home');
     }, function(error){
-      // never called
+      // **Auth (AngularDevise) bug** never gets called
     });
   };
   $scope.signup = function() {
     Auth.register($scope.user).then(function(){
       $state.go('home');
     }, function(error){
-      // parse error.data.errors
+      // have to parse error.data.errors
     });
   };
 }]);

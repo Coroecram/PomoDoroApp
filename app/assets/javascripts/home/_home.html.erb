@@ -1,7 +1,8 @@
 <div ng-show="signedIn()">
 
   <div ng-show="todos.length" id="main-table" class="clear">
-    <table ng-table="todoTable" class="table todo-table table-responsive table-striped table-hover">
+    <table ng-table="todoTable"
+           class="table todo-table table-responsive table-striped table-hover">
         <tr ng-repeat="todo in $data" ng-click="todoPage(todo)">
           <td title="'Title'" sortable="'title'">
               {{todo.title}}</td>

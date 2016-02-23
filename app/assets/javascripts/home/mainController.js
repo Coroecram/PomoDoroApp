@@ -16,7 +16,6 @@ angular.module('pomoDoro')
     Auth.currentUser().then(function(data) {
       user.setInfo(data);
       $scope.user = data;
-
       user.getTodos()
        .then(function(response) {
          var data = user.todos;
@@ -36,7 +35,6 @@ angular.module('pomoDoro')
             }
          }
          $scope.todos = data;
-
          $scope.todoTable = new ngTableParams({
              page: 1,
              count: 3,
@@ -95,5 +93,4 @@ angular.module('pomoDoro')
     $scope.formatTime = function(date) {
       return $filter('date')(date, 'MMM d, yyyy hh:mm a')
     }
-
 }]);

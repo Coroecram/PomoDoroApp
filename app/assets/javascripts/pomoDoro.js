@@ -78,6 +78,5 @@ angular.module('pomoDoro', [
             });
           }]
       });
-
   $urlRouterProvider.otherwise('home');
 }])
