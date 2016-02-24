@@ -1,14 +1,14 @@
 class TodosController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    user = User.find(params[:user_id])
-    respond_with user.todos
+    respond_with current_user.todos
   end
 
   def create
-    user = User.find(params[:user_id])
     todo = Todo.new(todo_params)
     if todo.save
-      respond_with user, todo
+      respond_with current_user, todo
     else
       render json: todo.errors.full_messages.to_sentence.to_json, status: 422
     end

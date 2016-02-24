@@ -11,7 +11,7 @@ function($scope, $state, Auth){
     Auth.login($scope.user).then(function(){
       $state.go('home');
     }, function(error){
-      // **Auth (AngularDevise) bug** never gets called
+      debugger
     });
   };
   $scope.signup = function() {
