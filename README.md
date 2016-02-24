@@ -1,6 +1,6 @@
 #Pomo D'Oro
 
-[Live][http://www.pomodoro.top]
+[Live][live]
 
 ##The Chaos Manager
 Pomo D'Oro is a task managing app akin to the more popular Pomodoro Technique, but with a twist.
@@ -24,12 +24,13 @@ just playing the devil's advocate, there's finally a way to keep track of your m
 - [x] Run a handy countdown timer for completing a "Pomo D'oro" toward their task
 
 ### Pomo D'oro will allow users to :
-- [] Edit profile
-- [] Add profile pics with AWS storage
-- [] Login with Omniauth
-- [] Set and sort their tasks by priority
-- [] Add comments to their tasks
-- [] Plan their tasks with another calendar program
+- [ ] Edit profile
+- [ ] Add profile pics with AWS storage
+- [ ] Login with Omniauth
+- [ ] Set and sort their tasks by priority
+- [ ] Add comments to their tasks
+- [ ] Plan their tasks with another calendar program
 
 
 [discord]: https://en.wikipedia.org/wiki/Apple_of_Discord
+[live]: http://www.pomodoro.top
