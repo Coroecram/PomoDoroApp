@@ -1,3 +1,6 @@
+<div class="error-message" ng-show="failed" ng-repeat="error in errors">
+  <p>{{error}}
+</div>
 <form class="session-form group" ng-submit="signup()">
   <div class="input-group">
     <input type="email" class="form-control" placeholder="Email" ng-model="user.email">
