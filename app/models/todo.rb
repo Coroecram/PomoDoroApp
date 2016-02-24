@@ -10,6 +10,8 @@ class Todo < ActiveRecord::Base
   validate :nonoverlapping_times
   before_validation :default_values
 
+  scope :of_user, -> (users) { where user_id: users }
+
   def complete!
     if !self.started
       self.time_started = Time.now()
