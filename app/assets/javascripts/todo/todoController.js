@@ -3,9 +3,13 @@ angular.module('pomoDoro')
 '$scope',
 '$state',
 '$filter',
+'Auth',
 'todo',
-function($scope, $state, $filter, todo) {
+function($scope, $state, $filter, Auth, todo) {
   Auth.currentUser().then(function(data) {
+      if(parseInt($state.params.id, 10) !== data.id) {
+        $state.go('home');
+      }
     }, function(unauthorized) {
       $state.go('signin');
     });
