@@ -5,18 +5,23 @@ angular.module('pomoDoro')
   'user',
   'Auth',
   function($scope, $state, user, Auth) {
-    $scope.$on('devise:unauthorized', function(event, xhr, deferred) {
-      $state.go('signin');
-    });
-    if(!user.info) {
+    var checkAuth = function(id) {
+      if(parseInt($state.params.id, 10) !== id) {
+        $state.go('home');
+      }
+    };
+    if(user.info) {
+      checkAuth(user.info.id)
+      $scope.user = user;
+    } else {
       Auth.currentUser().then(function(response){
+        checkAuth(response.id);
         user.setInfo(response);
         user.getTodos().then(function() {
           $scope.user = user;
         });
       });
     }
-    $scope.user = user;
     $scope.editing = false;
     $scope.edit = function() { $scope.editing = true };
     $scope.stopEdit = function() { $scope.editing = false };
