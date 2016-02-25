@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
   root to: 'angular#angular'
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+
 
   resources :users, only: [:show] do
     resources :todos
     patch 'todos/:id/complete_pomo', to: 'todos#complete_pomo'
     patch 'todos/:id/complete', to: 'todos#complete_todo'
     patch 'todos/:id/start_now', to: 'todos#start_todo'
+    put 'users/sign_in_guest', to: 'users/sessions#guest'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
