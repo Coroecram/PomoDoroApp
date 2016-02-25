@@ -34,6 +34,12 @@ class TodosController < ApplicationController
     respond_with todo
   end
 
+  def start_todo
+    todo = Todo.find(params[:id]).start_now!
+
+    respond_with todo
+  end
+
   def complete_pomo
     todo = Todo.find(params[:id])
     todo.pomo_completed!

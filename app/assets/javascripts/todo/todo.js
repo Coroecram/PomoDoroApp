@@ -40,6 +40,15 @@ angular.module('pomoDoro')
 
       return promise;
     };
+    o.startTodo = function() {
+      var promise = $http.patch('/users/' + o.todo.user_id + '/todos/' + o.todo.id + "/start_now.json").then(function(response){
+          return response;
+      }, function(response) {
+          return $q.reject(response);
+      });
+
+      return promise;
+    };
     o.editTodo = function(params) {
       var promise = $http.patch('/users/' + o.todo.user_id + '/todos/' + o.todo.id + '.json', params).then(function(response){
           return response;

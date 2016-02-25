@@ -14,11 +14,11 @@ class Todo < ActiveRecord::Base
 
   def complete!
     if !self.started
-      self.time_started = Time.now()
+      self.time_started = Time.now
       self.started = true
     end
     if !self.finished
-      self.time_finished = Time.now();
+      self.time_finished = Time.now;
       self.finished = true
     end
 
@@ -30,9 +30,10 @@ class Todo < ActiveRecord::Base
     self.save!
   end
 
-  def start_now
+  def start_now!
     self.time_started = Time.now
     self.started = true
+    self.save!
   end
 
   private

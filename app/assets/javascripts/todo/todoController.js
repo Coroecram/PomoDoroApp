@@ -11,10 +11,34 @@ function($scope, $state, $filter, todo) {
   };
   var getTodo = function(success, failure) {
     todo.getTodo($state.params.id, $state.params.todoID).then(function(response){
+      retrievedTodo(response.data);
       success(response);
     }, function(error) {
       failure(error);
     });
+  };
+  var retrievedTodo = function(retrieved) {
+    var todo = filterSeconds(retrieved)
+    $scope.todo = todo;
+    $scope.edit = todo;
+  };
+  var filterSeconds = function(todo) {
+    var coeff = 1000 * 60; // deal only in whole minutes.
+    if(todo.time_started) {
+       var time_started = new Date(todo.time_started)
+       todo.time_started = new Date(Math.round(time_started.getTime() / coeff) * coeff);
+     }
+     if(todo.time_finished) {
+       var time_finished = new Date(todo.time_finished);
+       todo.time_finished = new Date(Math.round(time_finished.getTime() / coeff) * coeff);
+     }
+     if(todo.planned) {
+       var planned = new Date(todo.planned);
+       todo.planned = new Date(Math.round(planned.getTime() / coeff) * coeff);
+     }
+     $scope.todo = todo;
+     $scope.edit = todo;
+     return todo;
   };
   if(todo.todo) {
     $scope.todo = todo.todo;
@@ -34,6 +58,11 @@ function($scope, $state, $filter, todo) {
     $scope.timerRunning = true;
     $scope.timerStarted ? $scope.$broadcast('timer-resume') : $scope.$broadcast('timer-start');
     $scope.timerStarted = true;
+    if(!$scope.todo.started || !$scope.todo.time_started) {
+      todo.startTodo().then(function() {
+        getTodo(function(){}, function(){});
+      })
+    }
   };
   $scope.pause = function() {
     $scope.timerRunning = false;
@@ -50,8 +79,7 @@ function($scope, $state, $filter, todo) {
   $scope.timerFinished = function() {
     $scope.timerRunning = false;
     var success = function(response) {
-      $scope.todo = response.data;
-      $scope.edit = response.data;
+      retrieveTodo(response.data);
       $scope.reset();
     };
     var failure = function(error) {
@@ -74,21 +102,6 @@ function($scope, $state, $filter, todo) {
   $scope.completeTodo = function() {
     $scope.timerRunning = false;
     var success = function(response) {
-      var coeff = 1000 * 60; // deal only in whole minutes.
-        if(response.data.time_started) {
-           var time_started = new Date(response.data.time_started)
-           response.data.time_started = new Date(Math.round(time_started.getTime() / coeff) * coeff);
-         }
-         if(response.data.time_finished) {
-           var time_finished = new Date(response.data.time_finished);
-           response.data.time_finished = new Date(Math.round(time_finished.getTime() / coeff) * coeff);
-         }
-         if(response.data.planned) {
-           var planned = new Date(response.data.planned);
-           response.data.planned = new Date(Math.round(planned.getTime() / coeff) * coeff);
-         }
-      $scope.todo = response.data;
-      $scope.edit = response.data;
       $scope.reset();
     };
     var failure = function(error) {
@@ -121,8 +134,6 @@ function($scope, $state, $filter, todo) {
                   user_id: $scope.todo.user_id
                 };
     var success = function(response) {
-      $scope.todo = response.data;
-      $scope.edit = response.data;
       $state.transitionTo('todo', {id: $state.params.id, todoID: $state.params.todoID});
     };
     var failure = function (error) {

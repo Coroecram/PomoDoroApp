@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     resources :todos
     patch 'todos/:id/complete_pomo', to: 'todos#complete_pomo'
     patch 'todos/:id/complete', to: 'todos#complete_todo'
+    patch 'todos/:id/start_now', to: 'todos#start_todo'
   end
 
-  get 'session/new_csrf', to: 'sessions#new_csrf'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
