@@ -2,10 +2,25 @@ angular.module('pomoDoro')
 .controller('navController', [
 '$scope',
 '$state',
+'$http',
+'$q',
 'Auth',
-function($scope, $state, Auth){
+function($scope, $state, $http, $q, Auth){
   $scope.signedIn = Auth.isAuthenticated;
-  $scope.signOut = Auth.logout;
+  var newCSRF = function() {
+    var promise = $http.get('/session/new_csrf.json').then(function(response){
+        return response;
+    }, function(response) {
+        return $q.reject(response);
+    });
+
+    return promise;
+  }
+  $scope.signOut = function() {
+    Auth.logout().then(function(response){
+      newCSRF();
+    };
+  };
   Auth.currentUser().then(function (user){
     $scope.user = user;
   });
