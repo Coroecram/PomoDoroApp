@@ -2,16 +2,17 @@ require 'faker'
 
 FactoryGirl.define do
   factory :user do
-    username  "examplename"
+    factory_password = Faker::Internet.password
+    username Faker::Lorem.characters(12)
     email Faker::Internet.email
-    password "example123"
-    password_confirmation "example123"
+    password factory_password
+    password_confirmation factory_password
   end
 
   factory :todo do
-    title 'Fake Project'
-    description 'This is going to be so fake'
-    expected_pomos 6
+    title Faker::StarWars.character
+    description Faker::StarWars.quote
+    expected_pomos Faker::Number.between(1, 6)
     completed_pomos 0
     started false
     finished false

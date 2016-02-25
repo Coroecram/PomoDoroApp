@@ -84,7 +84,7 @@ describe 'Todo' do
   end
   describe ':time_started' do
     it '#start_now' do
-      todo.start_now
+      todo.start_now!
       expect(todo.time_started.to_i).to be_within(10000).of(Time.now.to_i)
       expect(todo.started).to eq(true)
     end
