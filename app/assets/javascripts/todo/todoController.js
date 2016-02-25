@@ -5,6 +5,10 @@ angular.module('pomoDoro')
 '$filter',
 'todo',
 function($scope, $state, $filter, todo) {
+  Auth.currentUser().then(function(data) {
+    }, function(unauthorized) {
+      $state.go('signin');
+    });
   var finishFailSafe = function() {
     $scope.todo.completed_pomos += 1;
     $scope.reset();

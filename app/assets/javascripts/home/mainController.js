@@ -9,10 +9,6 @@ angular.module('pomoDoro')
   'Auth',
   'ngTableParams',
   function($scope, $http, $filter, $state, user, todo, Auth, ngTableParams) {
-    $scope.$on('devise:unauthorized', function(event, xhr, deferred) {
-      $state.go('signin');
-    });
-    $scope.signedIn = Auth.isAuthenticated;
     Auth.currentUser().then(function(data) {
       user.setInfo(data);
       $scope.user = data;
@@ -53,6 +49,8 @@ angular.module('pomoDoro')
              }
            });
        });
+     }, function(unauthorized) {
+       $state.go('signin');
      });
     $scope.todoPage = function (passedTodo){
       var id = $scope.user.id;
