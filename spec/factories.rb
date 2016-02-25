@@ -3,7 +3,7 @@ require 'faker'
 FactoryGirl.define do
   factory :user do
     username  "examplename"
-    email "testing@test.test"
+    email Faker::Internet.email
     password "example123"
     password_confirmation "example123"
   end
@@ -16,7 +16,7 @@ FactoryGirl.define do
     started false
     finished false
     time_started (Time.zone.now - 3000)
-    expected_finished Time.zone.now
+    planned (Time.zone.now + 10000)
     user_id 1
   end
 end

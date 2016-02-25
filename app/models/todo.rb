@@ -51,7 +51,7 @@ class Todo < ActiveRecord::Base
 
     def nonoverlapping_times
       if (self.time_started && self.planned)
-        self.errors.add(:planned, 'Cannot expect to finish task before it is started.') if self.time_started > self.planned
+        self.errors.add(:planned, 'cannot expect to finish task before it is started.') if self.time_started > self.planned
       else
         true
       end

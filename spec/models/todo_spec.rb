@@ -4,7 +4,7 @@ describe 'Todo' do
   let(:todo) { FactoryGirl.build(:todo) }
   before(:all) { @user = FactoryGirl.create(:user) }
   after(:all) { User.delete_all }
-  
+
   it "has valid factory" do
     expect(todo).to be_valid
   end
@@ -113,10 +113,10 @@ describe 'Todo' do
       expect(todo.time_finished.to_i).to eq(Time.now.to_i)
     end
   end
-  describe ':expected_finished' do
+  describe ':planned' do
     it 'cannot be before :time_started' do
       todo.time_started = Time.zone.now
-      todo.expected_finished = todo.time_started - 10000
+      todo.planned = todo.time_started - 10000
       expect(todo).to_not be_valid
     end
   end
