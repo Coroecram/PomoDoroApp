@@ -2,8 +2,9 @@ angular.module('pomoDoro')
 .controller('sessionController', [
 '$scope',
 '$state',
+'$http',
 'Auth',
-function($scope, $state, Auth){
+function($scope, $state, $http, Auth){
   Auth.currentUser().then(function() {
     $state.go('home');
   });
@@ -30,5 +31,8 @@ function($scope, $state, Auth){
       error.data.errors.password_confirmation ? $scope.errors.push("Password Confirmation " + error.data.errors.password_confirmation[0]) : '';
       $scope.failed = true;
     });
+  };
+  $scope.guestUser = function() {
+    $http.put('users/guest');
   };
 }]);

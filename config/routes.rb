@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
+  as :user do
+    put 'users/guest', to: 'users/sessions#guest'
+  end
 
 
   resources :users, only: [:show] do
@@ -10,7 +13,6 @@ Rails.application.routes.draw do
     patch 'todos/:id/complete_pomo', to: 'todos#complete_pomo'
     patch 'todos/:id/complete', to: 'todos#complete_todo'
     patch 'todos/:id/start_now', to: 'todos#start_todo'
-    put 'users/sign_in_guest', to: 'users/sessions#guest'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
