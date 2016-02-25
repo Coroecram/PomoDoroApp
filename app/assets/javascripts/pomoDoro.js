@@ -12,7 +12,6 @@ angular.module('pomoDoro', [
   '$httpProvider',
   function(AuthInterceptProvider, $stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.defaults.withCredentials = true;
-    AuthInterceptProvider.interceptAuth(true);
     $stateProvider
       .state('home', {
         url: '/home',

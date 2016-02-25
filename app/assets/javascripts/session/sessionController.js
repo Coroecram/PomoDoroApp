@@ -10,16 +10,12 @@ function($scope, $state, Auth){
   $scope.failed = false;
   $scope.errors = [];
   $scope.signin = function() {
-    var interval = setTimeout(function() {
+    Auth.login($scope.user).then(function(){
+      $state.go('home');
+    }, function(error) {
       $scope.failed = true;
       $scope.errors = "Invalid Email or Password";
       $scope.user.password = '';
-    }, 0); // hackiness because function(error) never called for 401
-    Auth.login($scope.user).then(function(){
-      clearTimeout(interval);
-      $state.go('home');
-    }, function(error) {
-      // not called with the typical 401/ the intercept is an error but doesn't register here
     });
   };
   $scope.signup = function() {

@@ -17,9 +17,7 @@ function($scope, $state, $http, $q, Auth){
     return promise;
   };
   $scope.signOut = function() {
-    Auth.logout().then(function(response){
-      newCSRF();
-    });
+    Auth.logout();
   };
   Auth.currentUser().then(function (user){
     $scope.user = user;
