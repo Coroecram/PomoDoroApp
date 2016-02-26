@@ -12,6 +12,8 @@ function($scope, $state, $http, Auth){
   }
   Auth.currentUser().then(function() {
     homepage();
+  }, function() {
+    $scope.user = {};
   });
   $scope.signin = function() {
     Auth.login($scope.user).then(function(){
@@ -36,7 +38,29 @@ function($scope, $state, $http, Auth){
   };
   $scope.guestUser = function() {
     $http.get('users/guest.json').then(function(response){
-      homepage();
+      var inputEmail = response.data.username + "@galaxy.faraway";
+      var i = 0;
+      var j = 0;
+      var emailField = $('.user-email');
+      var passwordField = $('.user-password')
+      emailField.val("");
+      passwordField.val("");
+      var inputLoop = function(email) {
+        setTimeout(function () {
+          emailField.val(emailField.val() + email[i]);
+          i++;
+          if(j < 8) {
+            passwordField.val(passwordField.val() + "x");
+            j++;
+          }
+          if (i < email.length) {
+            inputLoop(email);
+          } else {
+            setTimeout(function () { homepage() }, 250);
+          }
+        }, 100)
+      };
+      inputLoop(inputEmail);
     }, function(error) {
       $scope.failed = true;
       $scope.errors = "Please Try Again";

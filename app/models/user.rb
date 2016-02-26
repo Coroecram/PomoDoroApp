@@ -7,8 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :email, :username, :password, :password_confirmation, presence: true
-  validates :email, :username, uniqueness: true
-  validates :username, length: { in: 6..30 }
+  validates :email, uniqueness: true
   validates :email, length: { maximum: 50 }
   validates :email, email: true, :if => Proc.new {|entry| !entry.email.blank? }
   validate :check_email_and_password
