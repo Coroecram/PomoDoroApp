@@ -6,17 +6,13 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  def create
-    super
-  end
-
-  def destroy
-    super
-  end
-
-  def guest
-    debugger
-  end
+  # def create
+  #   super
+  # end
+  #
+  # def destroy
+  #   super
+  # end
 
   # protected
 

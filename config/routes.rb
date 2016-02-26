@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   root to: 'angular#angular'
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    registrations: 'users/registrations'
   }
   as :user do
-    put 'users/guest', to: 'users/sessions#guest'
+    get 'users/guest', to: 'users/registrations#guest'
   end
 
 

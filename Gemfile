@@ -39,6 +39,8 @@ gem 'devise', '~> 3.4.0'
 gem 'email_validator'
 gem 'newrelic_rpm'
 gem 'execjs'
+gem 'faker'
+gem 'as-duration'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -59,7 +61,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'faker'
   gem 'guard-rspec'
   gem 'factory_girl_rails', :require => false
   gem 'database_cleaner'

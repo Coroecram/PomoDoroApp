@@ -10,7 +10,7 @@ FactoryGirl.define do
   end
 
   factory :todo do
-    title Faker::StarWars.character
+    title Faker::StarWars.planet
     description Faker::StarWars.quote
     expected_pomos Faker::Number.between(1, 6)
     completed_pomos 0

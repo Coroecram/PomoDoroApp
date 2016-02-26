@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def set_csrf_cookie_for_ng
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
-  
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :username
   end

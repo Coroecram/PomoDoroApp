@@ -5,14 +5,17 @@ angular.module('pomoDoro')
 '$http',
 'Auth',
 function($scope, $state, $http, Auth){
-  Auth.currentUser().then(function() {
+  var homepage = function () {
+    $scope.failed = false;
+    $scope.errors = [];
     $state.go('home');
+  }
+  Auth.currentUser().then(function() {
+    homepage();
   });
-  $scope.failed = false;
-  $scope.errors = [];
   $scope.signin = function() {
     Auth.login($scope.user).then(function(){
-      $state.go('home');
+      homepage();
     }, function(error) {
       $scope.failed = true;
       $scope.errors = "Invalid Email or Password";
@@ -21,8 +24,7 @@ function($scope, $state, $http, Auth){
   };
   $scope.signup = function() {
     Auth.register($scope.user).then(function(){
-      $scope.failed = false;
-      $state.go('home');
+      homepage();
     }, function(error){
       $scope.errors = [];
       error.data.errors.email ? $scope.errors.push("Email " + error.data.errors.email[0]) : '';
@@ -33,6 +35,11 @@ function($scope, $state, $http, Auth){
     });
   };
   $scope.guestUser = function() {
-    $http.put('users/guest');
+    $http.get('users/guest.json').then(function(response){
+      homepage();
+    }, function(error) {
+      $scope.failed = true;
+      $scope.errors = "Please Try Again";
+    });
   };
 }]);
