@@ -23,6 +23,10 @@ ul {
  list-style: none;
 }
 
+.input-group {
+  width: 225px;
+}
+
 .clear:after {
    content: "";
    display: block;
