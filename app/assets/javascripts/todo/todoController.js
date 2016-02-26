@@ -26,27 +26,8 @@ function($scope, $state, $filter, Auth, todo) {
     });
   };
   var retrievedTodo = function(retrieved) {
-    var todo = filterSeconds(retrieved)
     $scope.todo = todo;
     $scope.edit = todo;
-  };
-  var filterSeconds = function(todo) {
-    var coeff = 1000 * 60; // deal only in whole minutes.
-    if(todo.time_started) {
-       var time_started = new Date(todo.time_started)
-       todo.time_started = new Date(Math.round(time_started.getTime() / coeff) * coeff);
-     }
-     if(todo.time_finished) {
-       var time_finished = new Date(todo.time_finished);
-       todo.time_finished = new Date(Math.round(time_finished.getTime() / coeff) * coeff);
-     }
-     if(todo.planned) {
-       var planned = new Date(todo.planned);
-       todo.planned = new Date(Math.round(planned.getTime() / coeff) * coeff);
-     }
-     $scope.todo = todo;
-     $scope.edit = todo;
-     return todo;
   };
   if(todo.todo) {
     $scope.todo = todo.todo;

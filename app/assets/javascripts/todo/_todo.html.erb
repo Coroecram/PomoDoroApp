@@ -1,7 +1,7 @@
 <h3>{{todo.title}}</h3>
 <p class="lead">{{todo.description}}</p>
-<div ng-show="todo.started">Started: {{formatTime(todo.time_started)}}</div>
-<div ng-show="todo.finished">Completed: {{formatTime(todo.time_finished)}}</div>
+<div ng-show="todo.started">Started: {{todo.time_started|noSeconds|date:format:'MMM d, yyyy hh:mm a'}}</div>
+<div ng-show="todo.finished">Completed: {{todo.time_finished|noSeconds|date:format:'MMM d, yyyy hh:mm a'}}</div>
 <h4>Pomo D'oros</h4>
 <div class="pomo-items clear">
   <div ng-repeat="complete in iterate(todo.completed_pomos)">
