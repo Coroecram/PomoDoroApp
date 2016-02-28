@@ -42,6 +42,7 @@ angular.module('pomoDoro')
     };
     o.startTodo = function() {
       var promise = $http.patch('/users/' + o.todo.user_id + '/todos/' + o.todo.id + "/start_now.json").then(function(response){
+        debugger
           return response;
       }, function(response) {
           return $q.reject(response);

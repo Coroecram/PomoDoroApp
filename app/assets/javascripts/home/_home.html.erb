@@ -7,9 +7,9 @@
           <td title="'Description'" sortable="'description'">
               {{todo.description}}</td>
           <td title="'Started'" sortable="'time_started'">
-              {{todo.time_started|noSeconds|date:format:'MMM d, yyyy hh:mm a'}}</td>
+              {{todo.time_started|noSeconds|date:format:"MMM d, yyyy hh:mm a"}}</td>
           <td title="'Finished'" sortable="'time_finished'">
-              {{todo.time_finished|noSeconds|date:format:'MMM d, yyyy hh:mm a'}}</td>
+              {{todo.time_finished|noSeconds|date:format:"MMM d, yyyy, hh:mm a"}}</td>
           <td title="'Pomos Completed'" sortable="'completed_pomos'">
               {{todo.completed_pomos}}</td>
           <td title="'Pomos Expected'" sortable="'expected_pomos'">

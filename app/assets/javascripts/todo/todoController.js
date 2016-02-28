@@ -26,8 +26,8 @@ function($scope, $state, $filter, Auth, todo) {
     });
   };
   var retrievedTodo = function(retrieved) {
-    $scope.todo = todo;
-    $scope.edit = todo;
+    $scope.todo = retrieved;
+    $scope.edit = retrieved;
   };
   if(todo.todo) {
     $scope.todo = todo.todo;
@@ -62,15 +62,12 @@ function($scope, $state, $filter, Auth, todo) {
            $scope.$broadcast('timer-reset');
      }
      if ($scope.timerRunning) {
-       $scope.start()
+          $scope.start()
      }
   };
   $scope.timerFinished = function() {
     $scope.timerRunning = false;
-    var success = function(response) {
-      retrieveTodo(response.data);
-      $scope.reset();
-    };
+    var success = function(response) {};
     var failure = function(error) {
       finishFailSafe();
     }
