@@ -19,13 +19,13 @@
       <input
         type="datetime-local"
         class="form-control"
-        value="edit.time_started || 0"
+        value="edit.time_started|noSeconds|date:'MMM d, yyyy hh:mm a' || 0"
         ng-model="edit.time_started">
     </label>
     <label>Time Finished
       <input type="datetime-local"
              class="form-control"
-             value="edit.time_finished || 0"
+             value="edit.time_finished|noSeconds|date:'MMM d, yyyy hh:mm a' || 0"
              ng-model="edit.time_finished">
     </label>
     <label>Started

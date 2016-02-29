@@ -10,9 +10,9 @@ function($scope, $state, $filter, Auth, todo) {
       if(parseInt($state.params.id, 10) !== data.id) {
         $state.go('home');
       }
-    }, function(unauthorized) {
-      $state.go('signin');
-    });
+  }, function(unauthorized) {
+    $state.go('signin');
+  });
   var finishFailSafe = function() {
     $scope.todo.completed_pomos += 1;
     $scope.reset();
@@ -26,16 +26,16 @@ function($scope, $state, $filter, Auth, todo) {
     });
   };
   var retrievedTodo = function(retrieved) {
-    $scope.todo = retrieved;
-    $scope.edit = retrieved;
+    $scope.todo = angular.copy(retrieved);
+    $scope.edit = angular.copy(retrieved);
   };
   if(todo.todo) {
-    $scope.todo = todo.todo;
-    $scope.edit = todo.todo;
+    $scope.todo = angular.copy(todo.todo);
+    $scope.edit = angular.copy(todo.todo);
   } else {
     var success = function(response) {
-      $scope.todo = response.data;
-      $scope.edit = response.data;
+      $scope.todo = angular.copy(response.data);
+      $scope.edit = angular.copy(response.data);
     };
     var failure = function (error) { $state.go('home'); };
     getTodo(success, failure);
@@ -102,7 +102,7 @@ function($scope, $state, $filter, Auth, todo) {
     $state.transitionTo('edit-todo', {id: $state.params.id, todoID: $state.params.todoID});
   };
   $scope.cancel = function() {
-    $state.edit = $state.todo;
+    $scope.edit = angular.copy($scope.todo);
     $state.transitionTo('todo', {id: $state.params.id, todoID: $state.params.todoID});
   };
   $scope.editTodo = function() {
