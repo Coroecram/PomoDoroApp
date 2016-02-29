@@ -7,8 +7,8 @@ angular.module('pomoDoro')
     var o = {};
 
     o.setTodo = function(todo) {
-      todo.time_started = new Date(todo.time_started);
-      todo.time_finished = new Date(todo.time_finished);
+      todo.time_started = o.noSeconds(todo.time_started);
+      todo.time_finished = o.noSeconds(todo.time_finished);
       o.todo = todo;
     };
     o.getTodo = function(userID, todoID) {
@@ -42,7 +42,6 @@ angular.module('pomoDoro')
     };
     o.startTodo = function() {
       var promise = $http.patch('/users/' + o.todo.user_id + '/todos/' + o.todo.id + "/start_now.json").then(function(response){
-        debugger
           return response;
       }, function(response) {
           return $q.reject(response);
@@ -68,6 +67,15 @@ angular.module('pomoDoro')
 
       return promise;
     };
+    o.noSeconds = function(time) {
+      var coeff = 1000 * 60; // deal only in whole minutes.
+      if(time) {
+        var timeObject = new Date(time);
+        time = new Date(Math.round(timeObject.getTime() / coeff) * coeff);
+      }
+
+      return time;
+    }
 
     return o;
 }]);

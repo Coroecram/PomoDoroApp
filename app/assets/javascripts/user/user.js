@@ -7,8 +7,7 @@ angular.module('pomoDoro')
     var o = {};
     o.getTodos = function(id) {
       var promise = $http.get('/users/' + id + '/todos.json').then(function(response){
-          $rootScope.user.todos = [];
-          angular.copy(response.data, $rootScope.user.todos);
+          $rootScope.user.todos = angular.copy(response.data);
           return response;
       }, function(response) {
           return $q.reject(response);
