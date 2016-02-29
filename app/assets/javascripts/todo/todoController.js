@@ -58,9 +58,7 @@ function($scope, $state, $filter, Auth, todo) {
     $scope.$broadcast('timer-stop');
   };
   $scope.reset = function() {
-     if (($scope.timerStarted)) {
-           $scope.$broadcast('timer-reset');
-     }
+     $scope.$broadcast('timer-reset');
      if ($scope.timerRunning) {
           $scope.start()
      }
@@ -72,6 +70,7 @@ function($scope, $state, $filter, Auth, todo) {
       finishFailSafe();
     }
     todo.completePomo().then(function(response) {
+      $scope.$broadcast('timer-reset');
       getTodo(success, failure);
     }, function(error) {
         finishFailSafe();
