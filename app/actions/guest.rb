@@ -15,7 +15,7 @@ class Guest
   def new_guest_user
     password = Faker::Internet.password
     @account = User.create!({"email"=>Faker::Internet.email, "username"=>Faker::Lorem.characters(10),
-              "password"=>password, "password_confirmation"=>password})
+              "password"=>password, "password_confirmation"=>password, guest: true})
     guest_todos
   end
 
