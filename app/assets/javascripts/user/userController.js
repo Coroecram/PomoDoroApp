@@ -1,10 +1,11 @@
 angular.module('pomoDoro')
 .controller('userController', [
+  '$rootScope',
   '$scope',
   '$state',
   'user',
   'Auth',
-  function($scope, $state, user, Auth) {
+  function($rootScope, $scope, $state, user, Auth) {
     var checkAuth = function(id) {
       if(parseInt($state.params.id, 10) !== id) {
         $state.go('home');
@@ -12,14 +13,14 @@ angular.module('pomoDoro')
     };
     if(user.info) {
       checkAuth(user.info.id)
-      $scope.user = user;
     } else {
       Auth.currentUser().then(function(response){
         checkAuth(response.id);
-        user.setInfo(response);
-        user.getTodos().then(function() {
-          $scope.user = user;
-        });
+        if(!$rootScope.user.todos) {
+          user.getTodos(response.id).then(function(response) {
+            $rootScope.user.todos = response.data;
+          });
+        }
       });
     }
     $scope.editing = false;

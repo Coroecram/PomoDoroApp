@@ -3,16 +3,16 @@
 </div>
 <form class="session-form group" ng-submit="signup()">
   <div class="input-group">
-    <input type="email" class="form-control" placeholder="Email" ng-model="user.email">
+    <input type="email" class="form-control" placeholder="Email" ng-model="$root.user.email">
   </div>
   <div class="input-group">
-    <input type="text" class="form-control" placeholder="Username" ng-model="user.username">
+    <input type="text" class="form-control" placeholder="Username" ng-model="$root.user.username">
   </div>
   <div class="input-group">
-    <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
+    <input type="password" class="form-control" placeholder="Password" ng-model="$root.user.password">
   </div>
   <div class="input-group">
-    <input type="password" class="form-control" placeholder="Password Confirmation" ng-model="user.password_confirmation">
+    <input type="password" class="form-control" placeholder="Password Confirmation" ng-model="$root.user.password_confirmation">
   </div>
   <input type="submit" class="btn btn-success" value="Register">
 </form>

@@ -1,15 +1,15 @@
 angular.module('pomoDoro')
 .controller('navController', [
+'$rootScope',
 '$scope',
 '$state',
 '$http',
-'$q',
 'Auth',
-function($scope, $state, $http, $q, Auth){
+function($rootScope, $scope, $state, $http, Auth){
   var guestCheck = function(user) {
     if(user.guestname) {
-      $scope.user.username = user.guestname;
-      $scope.user.email = user.guestname + "@grecian.myth";
+      $rootScope.user.username = user.guestname;
+      $rootScope.user.email = user.guestname + "@grecian.myth";
     }
   }
   $scope.signedIn = Auth.isAuthenticated;
@@ -18,18 +18,18 @@ function($scope, $state, $http, $q, Auth){
     Auth.logout();
   };
   Auth.currentUser().then(function (user){
-    $scope.user = user;
+    $rootScope.user = user;
     guestCheck(user);
   });
   $scope.$on('devise:new-registration', function (e, user){
-    $scope.user = user;
+    $rootScope.user = user;
   });
   $scope.$on('devise:login', function (e, user){
-    $scope.user = user;
+    $rootScope.user = user;
     guestCheck(user);
   });
   $scope.$on('devise:logout', function (e, user){
-    $scope.user = {};
+    $rootScope.user = {};
     $state.go('signin');
   });
 }]);

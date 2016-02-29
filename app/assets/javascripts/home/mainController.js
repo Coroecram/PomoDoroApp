@@ -11,6 +11,7 @@ angular.module('pomoDoro')
   };
 })
 .controller('mainController', [
+  '$rootScope',
   '$scope',
   '$http',
   '$filter',
@@ -19,11 +20,12 @@ angular.module('pomoDoro')
   'todo',
   'Auth',
   'ngTableParams',
-  function($scope, $http, $filter, $state, user, todo, Auth, ngTableParams) {
+  function($rootScope, $scope, $http, $filter, $state, user, todo, Auth, ngTableParams) {
     Auth.currentUser().then(function(data) {
-      user.setInfo(data);
-      $scope.user = data;
-      user.getTodos()
+      if(!$rootScope.user) {
+        $rootScope.user = data;
+      }
+      user.getTodos(data.id)
        .then(function(response) {
          $scope.todos = response.data;
          $scope.todoTable = new ngTableParams({
@@ -48,12 +50,12 @@ angular.module('pomoDoro')
        $state.go('signin');
      });
     $scope.todoPage = function (passedTodo){
-      var id = $scope.user.id;
+      var id = $rootScope.user.id;
       todo.setTodo(passedTodo);
       $state.transitionTo('todo', {id: id, todoID: passedTodo.id});
     };
     $scope.addTodoPage = function() {
-      $state.transitionTo('new-todo', {id: $scope.user.id});
+      $state.transitionTo('new-todo', {id: $rootScope.user.id});
     };
     $scope.cancel = function() {
       $state.go('home');
@@ -69,11 +71,12 @@ angular.module('pomoDoro')
                     finished: $scope.finished,
                     completed_pomos: $scope.completed_pomos,
                     expected_pomos: $scope.expected_pomos,
-                    user_id: $scope.user.id
+                    user_id: $rootScope.user.id
                   };
 
-          $http.post('/users/' + $scope.user.id + '/todos.json', params).then(function(data){
+          $http.post('/users/' + $rootScope.user.id + '/todos.json', params).then(function(data){
             $scope.todos.push(data);
+            $rootScope.user.todos.push(data);
             $state.go('home');
             $scope.todoTable.reload();
             $scope.title = '';

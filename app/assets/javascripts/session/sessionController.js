@@ -1,31 +1,33 @@
 angular.module('pomoDoro')
 .controller('sessionController', [
+'$rootScope',
 '$scope',
 '$state',
 '$http',
 'Auth',
-function($scope, $state, $http, Auth){
+function($rootScope, $scope, $state, $http, Auth){
   var homepage = function () {
     $scope.failed = false;
     $scope.errors = [];
     $state.go('home');
   }
   Auth.currentUser().then(function() {
+    $rootScope.user.todos = {};
     homepage();
   }, function() {
-    $scope.user = {};
+    $rootScope.user = {};
   });
   $scope.signin = function() {
-    Auth.login($scope.user).then(function(){
+    Auth.login($rootScope.user).then(function(){
       homepage();
     }, function(error) {
       $scope.failed = true;
       $scope.errors = "Invalid Email or Password";
-      $scope.user.password = '';
+      $rootScope.user.password = '';
     });
   };
   $scope.signup = function() {
-    Auth.register($scope.user).then(function(){
+    Auth.register($rootScope.user).then(function(){
       homepage();
     }, function(error){
       $scope.errors = [];

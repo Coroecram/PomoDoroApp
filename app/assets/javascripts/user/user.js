@@ -1,17 +1,14 @@
 angular.module('pomoDoro')
 .factory('user', [
+  '$rootScope',
   '$http',
   '$q',
-  function($http, $q){
-    var o = {
-      todos: []
-    };
-    o.setInfo = function(data) {
-      o.info = data;
-    };
-    o.getTodos = function() {
-      var promise = $http.get('/users/' + o.info.id + '/todos.json').then(function(response){
-          angular.copy(response.data, o.todos);
+  function($rootScope, $http, $q){
+    var o = {};
+    o.getTodos = function(id) {
+      var promise = $http.get('/users/' + id + '/todos.json').then(function(response){
+          $rootScope.user.todos = [];
+          angular.copy(response.data, $rootScope.user.todos);
           return response;
       }, function(response) {
           return $q.reject(response);
@@ -21,7 +18,7 @@ angular.module('pomoDoro')
     };
     o.createTodo = function(todo, id) {
       return $http.post('/users/' + id + '/todos.json', todo).success(function(data){
-        o.todos.push(data);
+        $rootScope.user.todos.push(data);
       });
     };
 
