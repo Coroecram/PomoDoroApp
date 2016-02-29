@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160229193125) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username",                            null: false
-    t.boolean  "guest"
+    t.string   "guestname"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

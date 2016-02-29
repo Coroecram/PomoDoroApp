@@ -38,7 +38,7 @@ function($scope, $state, $http, Auth){
   };
   $scope.guestUser = function() {
     $http.get('users/guest.json').then(function(response){
-      var inputEmail = response.data.username + "@galaxy.faraway";
+      var inputEmail = response.data.guestname + "@grecian.myth";
       var i = 0;
       var j = 0;
       var emailField = $('.user-email');

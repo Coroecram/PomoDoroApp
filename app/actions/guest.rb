@@ -4,6 +4,8 @@ I18n.reload!
 class Guest
   LOCATIONS = ['Troy', 'Mount Ida', 'Mount Olympus', 'Garden of the Hesperides',
                'Aegean Sea', 'Crete', 'Hades', 'Samos', 'Atlantis', 'Mycenae']
+ GUEST_USERNAMES = ['Athena', 'Hera', 'Aphrodite'];
+
 
   attr_reader :account
 
@@ -15,7 +17,7 @@ class Guest
   def new_guest_user
     password = Faker::Internet.password
     @account = User.create!({"email"=>Faker::Internet.email, "username"=>Faker::Lorem.characters(10),
-              "password"=>password, "password_confirmation"=>password, guest: true})
+              "password"=>password, "password_confirmation"=>password, guestname: GUEST_USERNAMES.sample})
     guest_todos
   end
 
