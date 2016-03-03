@@ -8,5 +8,6 @@
 //= require momentjs
 //= require jquery
 //= require bootstrap/dist/js/bootstrap
+//= require angular-mocks
 //= require pomoDoro
 //= require_tree

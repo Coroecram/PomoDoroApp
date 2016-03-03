@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get 'users/guest', to: 'users/registrations#guest'
   end
 
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
   resources :users, only: [:show] do
     resources :todos
